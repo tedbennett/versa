@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,13 @@
 		9F4C723E2547322F00699C0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C723D2547322F00699C0E /* ContentView.swift */; };
 		9F4C72402547323100699C0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C723F2547323100699C0E /* Assets.xcassets */; };
 		9F4C72432547323100699C0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C72422547323100699C0E /* Preview Assets.xcassets */; };
+		9F4C724D2547325100699C0E /* AppleMusicAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C724C2547325100699C0E /* AppleMusicAPI */; };
+		9F4C72512547326900699C0E /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C72502547326900699C0E /* SpotifyAPI */; };
+		9F4C72562547329600699C0E /* AppleMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C72552547329600699C0E /* AppleMusicViewModel.swift */; };
+		9F4C725A254732A200699C0E /* SpotifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C7259254732A200699C0E /* SpotifyViewModel.swift */; };
+		9F4C725D254732CF00699C0E /* AppleMusicPlaylistList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */; };
+		9F4C7261254732DC00699C0E /* SpotifyPlaylistList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */; };
+		9F4C72652547330100699C0E /* AddServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C72642547330100699C0E /* AddServiceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +27,11 @@
 		9F4C723F2547323100699C0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F4C72422547323100699C0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9F4C72442547323100699C0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F4C72552547329600699C0E /* AppleMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicViewModel.swift; sourceTree = "<group>"; };
+		9F4C7259254732A200699C0E /* SpotifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyViewModel.swift; sourceTree = "<group>"; };
+		9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistList.swift; sourceTree = "<group>"; };
+		9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistList.swift; sourceTree = "<group>"; };
+		9F4C72642547330100699C0E /* AddServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddServiceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4C72512547326900699C0E /* SpotifyAPI in Frameworks */,
+				9F4C724D2547325100699C0E /* AppleMusicAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,9 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				9F4C723B2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift */,
-				9F4C723D2547322F00699C0E /* ContentView.swift */,
 				9F4C723F2547323100699C0E /* Assets.xcassets */,
 				9F4C72442547323100699C0E /* Info.plist */,
+				9F4C72542547327D00699C0E /* ViewModels */,
+				9F4C72532547327700699C0E /* Views */,
 				9F4C72412547323100699C0E /* Preview Content */,
 			);
 			path = "Spotify-Apple-Music-Transfer";
@@ -67,6 +82,26 @@
 				9F4C72422547323100699C0E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9F4C72532547327700699C0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C723D2547322F00699C0E /* ContentView.swift */,
+				9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */,
+				9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */,
+				9F4C72642547330100699C0E /* AddServiceView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9F4C72542547327D00699C0E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C72552547329600699C0E /* AppleMusicViewModel.swift */,
+				9F4C7259254732A200699C0E /* SpotifyViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +120,10 @@
 			dependencies = (
 			);
 			name = "Spotify-Apple-Music-Transfer";
+			packageProductDependencies = (
+				9F4C724C2547325100699C0E /* AppleMusicAPI */,
+				9F4C72502547326900699C0E /* SpotifyAPI */,
+			);
 			productName = "Spotify-Apple-Music-Transfer";
 			productReference = 9F4C72382547322F00699C0E /* Spotify-Apple-Music-Transfer.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +151,10 @@
 				Base,
 			);
 			mainGroup = 9F4C722F2547322F00699C0E;
+			packageReferences = (
+				9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */,
+				9F4C724F2547326900699C0E /* XCRemoteSwiftPackageReference "SpotifyForSwift" */,
+			);
 			productRefGroup = 9F4C72392547322F00699C0E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F4C725D254732CF00699C0E /* AppleMusicPlaylistList.swift in Sources */,
 				9F4C723E2547322F00699C0E /* ContentView.swift in Sources */,
+				9F4C72652547330100699C0E /* AddServiceView.swift in Sources */,
 				9F4C723C2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift in Sources */,
+				9F4C7261254732DC00699C0E /* SpotifyPlaylistList.swift in Sources */,
+				9F4C72562547329600699C0E /* AppleMusicViewModel.swift in Sources */,
+				9F4C725A254732A200699C0E /* SpotifyViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +376,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tedbennett/AppleMusicForSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		9F4C724F2547326900699C0E /* XCRemoteSwiftPackageReference "SpotifyForSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tedbennett/SpotifyForSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F4C724C2547325100699C0E /* AppleMusicAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */;
+			productName = AppleMusicAPI;
+		};
+		9F4C72502547326900699C0E /* SpotifyAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F4C724F2547326900699C0E /* XCRemoteSwiftPackageReference "SpotifyForSwift" */;
+			productName = SpotifyAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F4C72302547322F00699C0E /* Project object */;
 }
