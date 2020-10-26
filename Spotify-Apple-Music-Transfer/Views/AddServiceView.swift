@@ -6,10 +6,45 @@
 //
 
 import SwiftUI
+import SpotifyAPI
+import AppleMusicAPI
+import StoreKit
 
 struct AddServiceView: View {
+    
+    var spotifyManager = SpotifyAPI.manager
+    @ObservedObject var AMViewModel = AppleMusicAuthViewModel.shared
+    
+    @State private var loggedInToSpotify = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            Button(action: {
+                spotifyManager.authorize { success in
+                    if success {
+                        loggedInToSpotify = true
+                    }
+                }
+            }, label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10).foregroundColor(.gray).frame(width: 250, height: 100)
+                    Text("Log In to Spotify").foregroundColor(.white).font(.title2).padding()
+                }
+            })
+            if !AMViewModel.authenticated {
+                Spacer()
+                Button(action: {
+                    AMViewModel.authorize()
+                }, label: {
+                    ZStack {
+                    RoundedRectangle(cornerRadius: 10).foregroundColor(.gray).frame(width: 250, height: 100)
+                    Text("Log In to Apple Music").foregroundColor(.white).font(.title2).padding()
+                    }
+                })
+            }
+            Spacer()
+        }
     }
 }
 

@@ -6,13 +6,23 @@
 //
 
 import SwiftUI
+import SpotifyAPI
 
 struct ContentView: View {
+    
+    @ObservedObject var AMViewModel = AppleMusicAuthViewModel.shared
+    
+    init() {
+        SpotifyAPI.manager.initialize(clientId: "e164f018712e4c6ba906a595591ff010", redirectUris: ["test://oauth-callback/"] , scopes: [.playlistModifyPrivate, .playlistModifyPublic])
+    }
+    
     var body: some View {
         TabView {
-            AppleMusicPlaylistList().tabItem {
-                Text("Apple")
-                Image(uiImage: UIImage(named: "apple")!)
+            if AMViewModel.authenticated {
+                AppleMusicPlaylistList().tabItem {
+                    Text("Apple")
+                    Image(uiImage: UIImage(named: "apple")!)
+                }
             }
             SpotifyPlaylistList().tabItem {
                 Text("Spotify")
