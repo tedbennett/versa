@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct SpotifyPlaylistList: View {
+    @ObservedObject var viewModel = SpotifyPlaylistsViewModel.shared
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(viewModel.playlists) { playlist in
+                    Text(playlist.name)
+                }
+            }.navigationTitle("Your Playlists")
+            .onAppear {
+                viewModel.getLibraryPlaylists()
+            }
+        }
     }
 }
 
