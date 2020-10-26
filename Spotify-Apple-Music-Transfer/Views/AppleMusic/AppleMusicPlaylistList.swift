@@ -20,7 +20,6 @@ struct AppleMusicPlaylistList: View {
                         label: {
                             Text(playlist.attributes?.name ?? "Unknown Name")
                         })
-                    
                 }
             }.navigationTitle("Your Playlists")
             .onAppear {

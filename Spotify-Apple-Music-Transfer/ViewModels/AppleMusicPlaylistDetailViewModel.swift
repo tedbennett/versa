@@ -9,7 +9,6 @@ import Foundation
 import AppleMusicAPI
 
 class AppleMusicPlaylistDetailViewModel: ObservableObject {
-    
     var playlist: AppleMusicAPI.LibraryPlaylist
     
     @Published var songs = [AppleMusicAPI.LibrarySong]()

@@ -14,7 +14,12 @@ struct SpotifyPlaylistList: View {
         NavigationView {
             List {
                 ForEach(viewModel.playlists) { playlist in
-                    Text(playlist.name)
+                    NavigationLink(
+                        destination: SpotifyPlaylistDetailView(playlist: playlist),
+                        label: {
+                            Text(playlist.name)
+                        })
+                    
                 }
             }.navigationTitle("Your Playlists")
             .onAppear {
