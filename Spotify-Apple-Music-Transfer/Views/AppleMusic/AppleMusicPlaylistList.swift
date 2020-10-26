@@ -15,7 +15,12 @@ struct AppleMusicPlaylistList: View {
         NavigationView {
             List {
                 ForEach(viewModel.playlists) { playlist in
-                    Text(playlist.attributes?.name ?? "Unknown Name")
+                    NavigationLink(
+                        destination: AppleMusicPlaylistDetail(playlist: playlist),
+                        label: {
+                            Text(playlist.attributes?.name ?? "Unknown Name")
+                        })
+                    
                 }
             }.navigationTitle("Your Playlists")
             .onAppear {

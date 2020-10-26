@@ -20,6 +20,8 @@
 		9F4C72652547330100699C0E /* AddServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C72642547330100699C0E /* AddServiceView.swift */; };
 		9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */; };
 		9FB8535125474968000521B0 /* SpotifyPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8535025474968000521B0 /* SpotifyPlaylistsViewModel.swift */; };
+		9FB8535425474EE0000521B0 /* AppleMusicPlaylistDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8535325474EE0000521B0 /* AppleMusicPlaylistDetail.swift */; };
+		9FB8535925474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8535825474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		9F4C72642547330100699C0E /* AddServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddServiceView.swift; sourceTree = "<group>"; };
 		9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		9FB8535025474968000521B0 /* SpotifyPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistsViewModel.swift; sourceTree = "<group>"; };
+		9FB8535325474EE0000521B0 /* AppleMusicPlaylistDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistDetail.swift; sourceTree = "<group>"; };
+		9FB8535825474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +95,9 @@
 		9F4C72532547327700699C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9FB8535725474EF0000521B0 /* Spotify */,
 				9F4C723D2547322F00699C0E /* ContentView.swift */,
-				9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */,
-				9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */,
+				9FB8535625474EE4000521B0 /* AppleMusic */,
 				9F4C72642547330100699C0E /* AddServiceView.swift */,
 			);
 			path = Views;
@@ -105,9 +109,27 @@
 				9F4C72552547329600699C0E /* AppleMusicAuthViewModel.swift */,
 				9F4C7259254732A200699C0E /* SpotifyAuthViewModel.swift */,
 				9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */,
+				9FB8535825474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift */,
 				9FB8535025474968000521B0 /* SpotifyPlaylistsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9FB8535625474EE4000521B0 /* AppleMusic */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */,
+				9FB8535325474EE0000521B0 /* AppleMusicPlaylistDetail.swift */,
+			);
+			path = AppleMusic;
+			sourceTree = "<group>";
+		};
+		9FB8535725474EF0000521B0 /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */,
+			);
+			path = Spotify;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,8 +216,10 @@
 				9F4C7261254732DC00699C0E /* SpotifyPlaylistList.swift in Sources */,
 				9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */,
 				9FB8535125474968000521B0 /* SpotifyPlaylistsViewModel.swift in Sources */,
+				9FB8535925474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift in Sources */,
 				9F4C72562547329600699C0E /* AppleMusicAuthViewModel.swift in Sources */,
 				9F4C725A254732A200699C0E /* SpotifyAuthViewModel.swift in Sources */,
+				9FB8535425474EE0000521B0 /* AppleMusicPlaylistDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
