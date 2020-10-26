@@ -12,34 +12,30 @@ import StoreKit
 
 struct AddServiceView: View {
     
-    var spotifyManager = SpotifyAPI.manager
-    @ObservedObject var AMViewModel = AppleMusicAuthViewModel.shared
-    
-    @State private var loggedInToSpotify = false
+    @ObservedObject var SpotifyAuth = SpotifyAuthViewModel.shared
+    @ObservedObject var AppleMusicAuth = AppleMusicAuthViewModel.shared
     
     var body: some View {
         VStack {
-            Spacer()
-            Button(action: {
-                spotifyManager.authorize { success in
-                    if success {
-                        loggedInToSpotify = true
-                    }
-                }
-            }, label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10).foregroundColor(.gray).frame(width: 250, height: 100)
-                    Text("Log In to Spotify").foregroundColor(.white).font(.title2).padding()
-                }
-            })
-            if !AMViewModel.authenticated {
+            if !SpotifyAuth.authenticated {
                 Spacer()
                 Button(action: {
-                    AMViewModel.authorize()
+                    SpotifyAuth.authorize()
                 }, label: {
                     ZStack {
-                    RoundedRectangle(cornerRadius: 10).foregroundColor(.gray).frame(width: 250, height: 100)
-                    Text("Log In to Apple Music").foregroundColor(.white).font(.title2).padding()
+                        RoundedRectangle(cornerRadius: 10).foregroundColor(.gray).frame(width: 250, height: 100)
+                        Text("Log In to Spotify").foregroundColor(.white).font(.title2).padding()
+                    }
+                })
+            }
+            if !AppleMusicAuth.authenticated {
+                Spacer()
+                Button(action: {
+                    AppleMusicAuth.authorize()
+                }, label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10).foregroundColor(.gray).frame(width: 250, height: 100)
+                        Text("Log In to Apple Music").foregroundColor(.white).font(.title2).padding()
                     }
                 })
             }

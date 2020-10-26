@@ -10,27 +10,32 @@ import SpotifyAPI
 
 struct ContentView: View {
     
-    @ObservedObject var AMViewModel = AppleMusicAuthViewModel.shared
+    @ObservedObject var AppleMusicAuth = AppleMusicAuthViewModel.shared
+    @ObservedObject var SpotifyAuth = SpotifyAuthViewModel.shared
     
     init() {
-        SpotifyAPI.manager.initialize(clientId: "e164f018712e4c6ba906a595591ff010", redirectUris: ["test://oauth-callback/"] , scopes: [.playlistModifyPrivate, .playlistModifyPublic])
+        SpotifyAuth.initialize()
     }
     
     var body: some View {
         TabView {
-            if AMViewModel.authenticated {
+            if AppleMusicAuth.authenticated {
                 AppleMusicPlaylistList().tabItem {
                     Text("Apple")
                     Image(uiImage: UIImage(named: "apple")!)
                 }
             }
-            SpotifyPlaylistList().tabItem {
-                Text("Spotify")
-                Image(uiImage: UIImage(named: "spotify")!)
+            if SpotifyAuth.authenticated {
+                SpotifyPlaylistList().tabItem {
+                    Text("Spotify")
+                    Image(uiImage: UIImage(named: "spotify")!)
+                }
             }
-            AddServiceView().tabItem {
-                Text("Add Service")
-                Image(systemName: "plus")
+            if !(SpotifyAuth.authenticated && AppleMusicAuth.authenticated) {
+                AddServiceView().tabItem {
+                    Text("Add Service")
+                    Image(systemName: "plus")
+                }
             }
         }
     }

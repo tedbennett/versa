@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SpotifyAPI
 
 @main
 struct Spotify_Apple_Music_TransferApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().onOpenURL { url in
+                SpotifyAPI.manager.handleRedirect(url: url)
+            }
         }
     }
 }
