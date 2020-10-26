@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct AppleMusicPlaylistList: View {
+    
+    @ObservedObject var viewModel = AppleMusicPlaylistsViewModel.shared
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                ForEach(viewModel.playlists) { playlist in
+                    Text(playlist.attributes?.name ?? "Unknown Name")
+                }
+            }.navigationTitle("Your Playlists")
+            .onAppear {
+                viewModel.getLibraryPlaylists()
+            }
+        }
     }
 }
 

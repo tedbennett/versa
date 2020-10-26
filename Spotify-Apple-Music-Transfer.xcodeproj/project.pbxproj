@@ -18,6 +18,7 @@
 		9F4C725D254732CF00699C0E /* AppleMusicPlaylistList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */; };
 		9F4C7261254732DC00699C0E /* SpotifyPlaylistList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */; };
 		9F4C72652547330100699C0E /* AddServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C72642547330100699C0E /* AddServiceView.swift */; };
+		9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9F4C725C254732CF00699C0E /* AppleMusicPlaylistList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistList.swift; sourceTree = "<group>"; };
 		9F4C7260254732DC00699C0E /* SpotifyPlaylistList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistList.swift; sourceTree = "<group>"; };
 		9F4C72642547330100699C0E /* AddServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddServiceView.swift; sourceTree = "<group>"; };
+		9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				9F4C72552547329600699C0E /* AppleMusicAuthViewModel.swift */,
 				9F4C7259254732A200699C0E /* SpotifyAuthViewModel.swift */,
+				9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				9F4C72652547330100699C0E /* AddServiceView.swift in Sources */,
 				9F4C723C2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift in Sources */,
 				9F4C7261254732DC00699C0E /* SpotifyPlaylistList.swift in Sources */,
+				9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */,
 				9F4C72562547329600699C0E /* AppleMusicAuthViewModel.swift in Sources */,
 				9F4C725A254732A200699C0E /* SpotifyAuthViewModel.swift in Sources */,
 			);
