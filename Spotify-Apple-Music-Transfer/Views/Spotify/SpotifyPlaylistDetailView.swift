@@ -22,11 +22,20 @@ struct SpotifyPlaylistDetailView: View {
     var body: some View {
         List {
             ForEach(viewModel.songs) { song in
-                Text(song.name )
+                VStack(alignment: .leading) {
+                    Text(song.name )
+                    Text(song.artists?.first?.name ?? "Unknown Artist").font(.footnote).foregroundColor(.gray)
+                }
             }
         }.onAppear {
             viewModel.getPlaylistSongs()
         }.navigationTitle(playlist.name)
+        .navigationBarItems(trailing: Button(action: {}, label: {
+            HStack {
+                Text("Transfer")
+                Image(systemName: "chevron.right")
+            }
+        }))
     }
 }
 

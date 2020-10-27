@@ -18,15 +18,25 @@ struct AppleMusicPlaylistDetail: View {
         viewModel = AppleMusicPlaylistDetailViewModel(playlist: playlist)
     }
     
-    
     var body: some View {
         List {
             ForEach(viewModel.songs) { song in
-                Text(song.attributes?.name ?? "Unknown Song")
+                VStack(alignment: .leading) {
+                    Text(song.attributes?.name ?? "Unknown Song")
+                        .foregroundColor(viewModel.availableOnSpotify(song.id) ? .white : .gray)
+                    Text(song.attributes?.artistName ?? "Unknown Artist")
+                        .font(.footnote).foregroundColor(.gray)
+                }
             }
         }.onAppear {
             viewModel.getPlaylistSongs()
         }.navigationTitle(playlist.attributes?.name ?? "Playlist")
+        .navigationBarItems(trailing: Button(action: {
+            viewModel.transferToSpotify()
+        }, label: {
+            Text("Transfer")
+        }).disabled(!viewModel.isrcIdsFetched)
+        )
     }
 }
 

@@ -20,8 +20,6 @@ class AppleMusicPlaylistsViewModel: ObservableObject {
         }
     }
     
-    //var objectWillChange = ObservableObjectPublisher()
-    
     func getLibraryPlaylists() {
         
         AppleMusicAPI.manager.getAllLibraryPlaylists { playlists, error in
