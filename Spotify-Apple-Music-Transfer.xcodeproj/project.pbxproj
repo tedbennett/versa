@@ -110,14 +110,30 @@
 		9F4C72542547327D00699C0E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				9F72540E2548DB8300CCDAFC /* Spotify */,
+				9F72540D2548DB7600CCDAFC /* AppleMusic */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9F72540D2548DB7600CCDAFC /* AppleMusic */ = {
+			isa = PBXGroup;
+			children = (
 				9F4C72552547329600699C0E /* AppleMusicAuthViewModel.swift */,
-				9F4C7259254732A200699C0E /* SpotifyAuthViewModel.swift */,
 				9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */,
 				9FB8535825474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift */,
+			);
+			path = AppleMusic;
+			sourceTree = "<group>";
+		};
+		9F72540E2548DB8300CCDAFC /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				9F4C7259254732A200699C0E /* SpotifyAuthViewModel.swift */,
 				9FB8535025474968000521B0 /* SpotifyPlaylistsViewModel.swift */,
 				9F690031254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift */,
 			);
-			path = ViewModels;
+			path = Spotify;
 			sourceTree = "<group>";
 		};
 		9FB8535625474EE4000521B0 /* AppleMusic */ = {
