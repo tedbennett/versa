@@ -21,6 +21,8 @@
 		9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */; };
 		9F69002F254755080071BEBA /* SpotifyPlaylistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69002E254755080071BEBA /* SpotifyPlaylistDetailView.swift */; };
 		9F690032254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F690031254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift */; };
+		9F91012E2549CF0C00F97C90 /* OpenLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91012D2549CF0C00F97C90 /* OpenLinkView.swift */; };
+		9F9101332549CF4F00F97C90 /* OpenLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9101322549CF4F00F97C90 /* OpenLinkViewModel.swift */; };
 		9FB8535125474968000521B0 /* SpotifyPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8535025474968000521B0 /* SpotifyPlaylistsViewModel.swift */; };
 		9FB8535425474EE0000521B0 /* AppleMusicPlaylistDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8535325474EE0000521B0 /* AppleMusicPlaylistDetail.swift */; };
 		9FB8535925474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8535825474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift */; };
@@ -41,6 +43,8 @@
 		9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		9F69002E254755080071BEBA /* SpotifyPlaylistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistDetailView.swift; sourceTree = "<group>"; };
 		9F690031254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistDetailViewModel.swift; sourceTree = "<group>"; };
+		9F91012D2549CF0C00F97C90 /* OpenLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLinkView.swift; sourceTree = "<group>"; };
+		9F9101322549CF4F00F97C90 /* OpenLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLinkViewModel.swift; sourceTree = "<group>"; };
 		9FB8535025474968000521B0 /* SpotifyPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		9FB8535325474EE0000521B0 /* AppleMusicPlaylistDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistDetail.swift; sourceTree = "<group>"; };
 		9FB8535825474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistDetailViewModel.swift; sourceTree = "<group>"; };
@@ -99,10 +103,11 @@
 		9F4C72532547327700699C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9FB8535725474EF0000521B0 /* Spotify */,
 				9F4C723D2547322F00699C0E /* ContentView.swift */,
-				9FB8535625474EE4000521B0 /* AppleMusic */,
 				9F4C72642547330100699C0E /* AddServiceView.swift */,
+				9F910138254A313B00F97C90 /* Clipboard */,
+				9FB8535625474EE4000521B0 /* AppleMusic */,
+				9FB8535725474EF0000521B0 /* Spotify */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 			children = (
 				9F72540E2548DB8300CCDAFC /* Spotify */,
 				9F72540D2548DB7600CCDAFC /* AppleMusic */,
+				9F9101322549CF4F00F97C90 /* OpenLinkViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -134,6 +140,14 @@
 				9F690031254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift */,
 			);
 			path = Spotify;
+			sourceTree = "<group>";
+		};
+		9F910138254A313B00F97C90 /* Clipboard */ = {
+			isa = PBXGroup;
+			children = (
+				9F91012D2549CF0C00F97C90 /* OpenLinkView.swift */,
+			);
+			path = Clipboard;
 			sourceTree = "<group>";
 		};
 		9FB8535625474EE4000521B0 /* AppleMusic */ = {
@@ -233,6 +247,8 @@
 			files = (
 				9F4C725D254732CF00699C0E /* AppleMusicPlaylistList.swift in Sources */,
 				9F4C723E2547322F00699C0E /* ContentView.swift in Sources */,
+				9F9101332549CF4F00F97C90 /* OpenLinkViewModel.swift in Sources */,
+				9F91012E2549CF0C00F97C90 /* OpenLinkView.swift in Sources */,
 				9F4C72652547330100699C0E /* AddServiceView.swift in Sources */,
 				9F4C723C2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift in Sources */,
 				9F69002F254755080071BEBA /* SpotifyPlaylistDetailView.swift in Sources */,
