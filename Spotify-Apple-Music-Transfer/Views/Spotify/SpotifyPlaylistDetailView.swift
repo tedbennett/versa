@@ -30,7 +30,9 @@ struct SpotifyPlaylistDetailView: View {
         }.onAppear {
             viewModel.getPlaylistSongs()
         }.navigationTitle(playlist.name)
-        .navigationBarItems(trailing: Button(action: {}, label: {
+        .navigationBarItems(trailing: Button(action: {
+            viewModel.transferToAppleMusic()
+        }, label: {
             HStack {
                 Text("Transfer")
                 Image(systemName: "chevron.right")
