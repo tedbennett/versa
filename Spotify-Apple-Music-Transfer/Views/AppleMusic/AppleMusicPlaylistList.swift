@@ -18,7 +18,9 @@ struct AppleMusicPlaylistList: View {
                     NavigationLink(
                         destination: AppleMusicPlaylistDetail(playlist: playlist),
                         label: {
-                            Text(playlist.attributes?.name ?? "Unknown Name")
+                            PlaylistItem(
+                                name: playlist.attributes?.name,
+                                imageUrl: viewModel.getImageUrl(from: playlist.attributes?.artwork?.url, dimension: 240))
                         })
                 }
             }.navigationTitle("Your Playlists")

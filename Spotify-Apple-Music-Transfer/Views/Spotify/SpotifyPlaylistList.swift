@@ -17,7 +17,7 @@ struct SpotifyPlaylistList: View {
                     NavigationLink(
                         destination: SpotifyPlaylistDetailView(playlist: playlist),
                         label: {
-                            Text(playlist.name)
+                            PlaylistItem(name: playlist.name, imageUrl: playlist.images.first?.url)
                         })
                     
                 }

@@ -22,10 +22,7 @@ struct SpotifyPlaylistDetailView: View {
     var body: some View {
         List {
             ForEach(viewModel.songs) { song in
-                VStack(alignment: .leading) {
-                    Text(song.name )
-                    Text(song.artists?.first?.name ?? "Unknown Artist").font(.footnote).foregroundColor(.gray)
-                }
+                SongItem(name: song.name, artist: song.artists?.first?.name, imageUrl: song.album?.images.first?.url)
             }
         }.onAppear {
             viewModel.getPlaylistSongs()
