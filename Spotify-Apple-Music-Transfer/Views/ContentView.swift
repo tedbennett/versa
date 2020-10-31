@@ -13,6 +13,8 @@ struct ContentView: View {
     @ObservedObject var AppleMusicAuth = AppleMusicAuthViewModel.shared
     @ObservedObject var SpotifyAuth = SpotifyAuthViewModel.shared
     
+    @ObservedObject var clipboardViewModel = OpenLinkViewModel.shared
+    
     init() {
         SpotifyAuth.initialize()
     }
@@ -36,6 +38,20 @@ struct ContentView: View {
                     Text("Add Service")
                     Image(systemName: "plus")
                 }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            clipboardViewModel.parseClipboard(UIPasteboard.general.string)
+            }
+        
+        .sheet(isPresented: $clipboardViewModel.foundLink) {
+            switch clipboardViewModel.state {
+                case .spotifySong, .spotifyAlbum, .spotifyArtist, .spotifyPlaylist,
+                .appleMusicSong, .appleMusicAlbum, .appleMusicArtist, .appleMusicPlaylist:
+                    OpenLinkView()
+                default:
+                    Spacer()
+                
             }
         }
     }

@@ -22,12 +22,24 @@ class OpenLinkViewModel: ObservableObject {
     @Published var numTracks: Int?
     @Published var url: URL?
     
-    @Published var state = State.noUrl
+    @Published var state = State.noUrl {
+        didSet {
+            switch state {
+                case .spotifySong, .spotifyAlbum, .spotifyArtist, .spotifyPlaylist,
+                     .appleMusicSong, .appleMusicAlbum, .appleMusicArtist, .appleMusicPlaylist:
+                    foundLink = true
+                default:
+                    foundLink = false
+            }
+        }
+    }
+    
+    @Published var foundLink = false
     
     private var lastCheckedContents = ""
     
-    func parseClipboard(_ contents: String) {
-        guard contents != lastCheckedContents else {
+    func parseClipboard(_ contents: String?) {
+        guard let contents = contents, contents != lastCheckedContents else {
             return
         }
         lastCheckedContents = contents
@@ -115,8 +127,10 @@ class OpenLinkViewModel: ObservableObject {
             
             SpotifyAPI.manager.getTrackFromIsrc(attributes.isrc) { songs, url, error in
                 if let urlString = songs.first?.externalUrls.spotify {
-                    self.url = URL(string: urlString)
-                    self.state = .spotifySong
+                    DispatchQueue.main.async {
+                        self.url = URL(string: urlString)
+                        self.state = .spotifySong
+                    }
                 }
             }
         }

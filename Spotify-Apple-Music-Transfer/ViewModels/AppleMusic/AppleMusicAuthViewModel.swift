@@ -29,7 +29,7 @@ class AppleMusicAuthViewModel: ObservableObject {
                         self.SKController.requestUserToken(forDeveloperToken: self.developerToken) { userToken, error in
                             if let userToken = userToken {
                                 self.authenticated = true
-                                AppleMusicAPI.manager.initialize(developerToken: self.developerToken, userToken: userToken, storefront: "gb")
+                                AppleMusicAPI.manager.initialize(developerToken: self.developerToken, userToken: userToken)
                             } else {
                                 print(error.debugDescription)
                             }
