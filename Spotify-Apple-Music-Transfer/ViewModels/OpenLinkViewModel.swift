@@ -18,7 +18,7 @@ class OpenLinkViewModel: ObservableObject {
     @Published var name: String?
     @Published var artistName: String?
     @Published var albumName: String?
-    @Published var imageURL: URL?
+    @Published var imageUrl: String?
     @Published var numTracks: Int?
     @Published var url: URL?
     
@@ -122,7 +122,7 @@ class OpenLinkViewModel: ObservableObject {
                 self.name = attributes.name
                 self.artistName = attributes.artistName
                 self.albumName = attributes.albumName
-                self.imageURL = self.getImageURL(from: attributes.artwork.url)
+                self.imageUrl = self.getAppleMusicImageUrl(from: attributes.artwork.url)
             }
             
             SpotifyAPI.manager.getTrackFromIsrc(attributes.isrc) { songs, url, error in
@@ -146,7 +146,7 @@ class OpenLinkViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.name = attributes.name
                 self.artistName = attributes.artistName
-                self.imageURL = self.getImageURL(from: attributes.artwork?.url)
+                self.imageUrl = self.getAppleMusicImageUrl(from: attributes.artwork?.url)
             }
             
             // No ISRC for albums so we need to search...
@@ -189,7 +189,7 @@ class OpenLinkViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.name = attributes.name
-                self.imageURL = self.getImageURL(from: attributes.artwork?.url)
+                self.imageUrl = self.getAppleMusicImageUrl(from: attributes.artwork?.url)
                 self.state = .spotifyPlaylist
             }
         }
@@ -206,7 +206,7 @@ class OpenLinkViewModel: ObservableObject {
                 self.name = song.name
                 self.artistName = song.artists.first?.name ?? "Unknown Artist"
                 self.albumName = song.album.name
-                self.imageURL = self.getImageURL(from: song.album.images.first?.url)
+                self.imageUrl = song.album.images.first?.url
             }
             if let isrc = song.externalIds.isrc {
                 AppleMusicAPI.manager.getCatalogSongByIsrcId(isrcId: isrc) { song, error in
@@ -227,7 +227,7 @@ class OpenLinkViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.artistName = album.artists.first?.name ?? "Unknown Artist"
                 self.name = album.name
-                self.imageURL = self.getImageURL(from: album.images.first?.url)
+                self.imageUrl = album.images.first?.url
             }
             
             AppleMusicAPI.manager.searchCatalogAlbums(term: "\(self.artistName!) \(self.name!)") { albums, error in
@@ -246,7 +246,7 @@ class OpenLinkViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.name = artist.name
-                self.imageURL = self.getImageURL(from: artist.images.first?.url)
+                self.imageUrl = artist.images.first?.url
             }
             AppleMusicAPI.manager.searchCatalogArtists(term: artist.name) { artists, error in
                 self.url = artists?.first?.attributes?.url
@@ -264,7 +264,7 @@ class OpenLinkViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.name = playlist.name
-                self.imageURL = self.getImageURL(from: playlist.images.first?.url)
+                self.imageUrl = playlist.images.first?.url
                 self.state = .appleMusicPlaylist
             }
         }
@@ -276,6 +276,11 @@ class OpenLinkViewModel: ObservableObject {
             return nil
         }
         return URL(string: string)
+    }
+    
+    private func getAppleMusicImageUrl(from string: String?) -> String? {
+        return string != nil ? string!.replacingOccurrences(of: "{w}", with: String(640))
+            .replacingOccurrences(of: "{h}", with: String(640)) : nil
     }
     
     enum State {

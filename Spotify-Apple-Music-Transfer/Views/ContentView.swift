@@ -45,14 +45,7 @@ struct ContentView: View {
             }
         
         .sheet(isPresented: $clipboardViewModel.foundLink) {
-            switch clipboardViewModel.state {
-                case .spotifySong, .spotifyAlbum, .spotifyArtist, .spotifyPlaylist,
-                .appleMusicSong, .appleMusicAlbum, .appleMusicArtist, .appleMusicPlaylist:
-                    OpenLinkView()
-                default:
-                    Spacer()
-                
-            }
+            OpenLinkView()
         }
     }
 }
