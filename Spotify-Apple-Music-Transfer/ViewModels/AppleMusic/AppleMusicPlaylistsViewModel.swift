@@ -37,9 +37,8 @@ class AppleMusicPlaylistsViewModel: ObservableObject {
     }
     
     func getImageUrl(from urlString: String?, dimension: Int = 640) -> String? {
-        return urlString != nil ? urlString!.replacingOccurrences(of: "{w}", with: String(640))
-        .replacingOccurrences(of: "{h}", with: String(640)) : nil
-        
+        return urlString != nil ? urlString!.replacingOccurrences(of: "{w}", with: String(dimension))
+        .replacingOccurrences(of: "{h}", with: String(dimension)) : nil
     }
 }
 

@@ -11,26 +11,18 @@ import AppleMusicAPI
 struct AppleMusicPlaylistDetail: View {
     @ObservedObject var viewModel: AppleMusicPlaylistDetailViewModel
     
-    var playlist: AppleMusicAPI.LibraryPlaylist
-    
     init(playlist: AppleMusicAPI.LibraryPlaylist) {
-        self.playlist = playlist
         viewModel = AppleMusicPlaylistDetailViewModel(playlist: playlist)
     }
     
     var body: some View {
         List {
             ForEach(viewModel.songs) { song in
-                VStack(alignment: .leading) {
-                    Text(song.attributes?.name ?? "Unknown Song")
-                        .foregroundColor(viewModel.availableOnSpotify(song.id) ? .white : .gray)
-                    Text(song.attributes?.artistName ?? "Unknown Artist")
-                        .font(.footnote).foregroundColor(.gray)
-                }
+                SongItem(name: song.attributes?.name, artist: song.attributes?.artistName, imageUrl: viewModel.getImageUrl(from: song.attributes?.artwork.url))
             }
         }.onAppear {
             viewModel.getPlaylistSongs()
-        }.navigationTitle(playlist.attributes?.name ?? "Playlist")
+        }.navigationTitle(viewModel.getPlaylistName())
         .navigationBarItems(trailing: Button(action: {
             viewModel.transferToSpotify()
         }, label: {

@@ -20,11 +20,8 @@ class ImageFromUrlViewModel: ObservableObject {
     
     func loadImage() {
         if loadImageFromCache() {
-            print("Loaded from cache")
             return
         }
-        
-        print("Image not in cache")
         loadImageFromUrl()
     }
     

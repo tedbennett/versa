@@ -26,6 +26,10 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
         self.playlist = playlist
     }
     
+    func getPlaylistName() -> String {
+        return playlist.attributes?.name ?? "Playlist"
+    }
+    
     func getPlaylistSongs() {
         AppleMusicAPI.manager.getLibraryPlaylistSongs(id: playlist.id) { [weak self] songs, error in
             guard error == nil else {
@@ -92,6 +96,11 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
             }
             
         }
+    }
+    
+    func getImageUrl(from urlString: String?, dimension: Int = 640) -> String? {
+        return urlString != nil ? urlString!.replacingOccurrences(of: "{w}", with: String(dimension))
+            .replacingOccurrences(of: "{h}", with: String(dimension)) : nil
     }
     
     func availableOnSpotify(_ id: String) -> Bool {

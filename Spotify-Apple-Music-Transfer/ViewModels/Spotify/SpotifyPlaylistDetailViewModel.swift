@@ -20,6 +20,10 @@ class SpotifyPlaylistDetailViewModel: ObservableObject {
         self.playlist = playlist
     }
     
+    func getPlaylistName() -> String {
+        return playlist.name
+    }
+    
     func getPlaylistSongs() {
         SpotifyAPI.manager.getPlaylistsTracks(id: playlist.id, country: "GB") { [weak self] songs, error in
             guard error == nil else {
@@ -60,7 +64,6 @@ class SpotifyPlaylistDetailViewModel: ObservableObject {
                         print(error.debugDescription)
                         return
                     }
-                    print(playlists.first?.attributes?.name)
             }
         }
         

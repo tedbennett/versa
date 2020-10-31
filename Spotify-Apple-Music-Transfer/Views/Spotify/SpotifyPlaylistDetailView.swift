@@ -11,10 +11,7 @@ import SpotifyAPI
 struct SpotifyPlaylistDetailView: View {
     @ObservedObject var viewModel: SpotifyPlaylistDetailViewModel
     
-    var playlist: SpotifyAPI.PlaylistSimplified
-    
     init(playlist: SpotifyAPI.PlaylistSimplified) {
-        self.playlist = playlist
         viewModel = SpotifyPlaylistDetailViewModel(playlist: playlist)
     }
     
@@ -26,7 +23,7 @@ struct SpotifyPlaylistDetailView: View {
             }
         }.onAppear {
             viewModel.getPlaylistSongs()
-        }.navigationTitle(playlist.name)
+        }.navigationTitle(viewModel.getPlaylistName())
         .navigationBarItems(trailing: Button(action: {
             viewModel.transferToAppleMusic()
         }, label: {
