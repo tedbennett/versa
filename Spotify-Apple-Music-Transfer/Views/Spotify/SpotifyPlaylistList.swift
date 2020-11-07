@@ -19,11 +19,12 @@ struct SpotifyPlaylistList: View {
                         label: {
                             PlaylistItem(name: playlist.name, imageUrl: playlist.images.first?.url)
                         })
-                    
                 }
-            }.navigationTitle("Your Playlists")
+            }.navigationTitle("Spotify Playlists")
             .onAppear {
-                viewModel.getLibraryPlaylists()
+                if viewModel.playlists.isEmpty {
+                    viewModel.getLibraryPlaylists()
+                }
             }
         }
     }

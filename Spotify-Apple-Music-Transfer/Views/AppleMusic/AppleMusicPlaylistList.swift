@@ -12,6 +12,7 @@ struct AppleMusicPlaylistList: View {
     @ObservedObject var viewModel = AppleMusicPlaylistsViewModel.shared
     
     var body: some View {
+        
         NavigationView {
             List {
                 ForEach(viewModel.playlists) { playlist in
@@ -23,9 +24,11 @@ struct AppleMusicPlaylistList: View {
                                 imageUrl: viewModel.getImageUrl(from: playlist.attributes?.artwork?.url, dimension: 240))
                         })
                 }
-            }.navigationTitle("Your Playlists")
+            }.navigationTitle("Apple Music Playlists")
             .onAppear {
-                viewModel.getLibraryPlaylists()
+                if viewModel.playlists.isEmpty {
+                    viewModel.getLibraryPlaylists()
+                }
             }
         }
     }

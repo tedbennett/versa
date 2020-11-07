@@ -42,11 +42,9 @@ class SpotifyPlaylistDetailViewModel: ObservableObject {
             group.enter()
             if let isrc = song.externalIds?.isrc {
                 AppleMusicAPI.manager.getCatalogSongByIsrcId(isrcId: isrc) { [weak self] song, error in
-                    guard let song = song else {
-                        print(error.debugDescription)
-                        return
+                    if let song = song {
+                        self?.appleMusicSongs.append(song)
                     }
-                    self?.appleMusicSongs.append(song)
                     group.leave()
                 }
             } else {

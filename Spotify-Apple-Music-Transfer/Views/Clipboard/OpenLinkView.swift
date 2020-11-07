@@ -23,25 +23,35 @@ struct OpenLinkView: View {
     }
     
     var body: some View {
-        VStack {
-            ImageView(urlString: viewModel.imageUrl)
-            Text(viewModel.name ?? "Unknown").font(.largeTitle)
-            if (viewModel.albumName != nil) {
-                Text(viewModel.albumName!).font(.title3)
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Spacer()
+                ImageView(urlString: viewModel.imageUrl).frame(width: 300, height: 300).cornerRadius(20)
+                Spacer()
             }
+            Text(viewModel.name ?? "Unknown").font(.largeTitle).bold()
             if (viewModel.artistName != nil) {
-                Text(viewModel.artistName!).font(.title3)
+                Text(viewModel.artistName!).font(.title3).foregroundColor(.gray)
             }
-            Button(action: {
-                if viewModel.url != nil {
-                    UIApplication.shared.open(viewModel.url!)
-                }
-            }, label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10).fill(Color.white)
-                    Text(openInServiceString).font(.title3)
-                }
-            })
-        }
+            if (viewModel.albumName != nil) {
+                Text(viewModel.albumName!).font(.title3).foregroundColor(.gray)
+            }
+            HStack {
+                Spacer()
+                Button(action: {
+                    if viewModel.url != nil {
+                        UIApplication.shared.open(viewModel.url!)
+                    }
+                }, label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                            .frame(width: 200, height: 80)
+                        Text(openInServiceString).font(.title3).foregroundColor(.black)
+                    }
+                })
+                Spacer()
+            }
+        }.padding(20)
     }
 }
