@@ -18,6 +18,8 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
     
     @Published var notFoundOnSpotify = [String]()
     
+    @Published var transferring = false
+    
     private var spotifyTracks = [SpotifyAPI.Track]()
     
     @Published var isrcIdsFetched = false
@@ -70,6 +72,7 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
     
     func transferToSpotify() {
         let group = DispatchGroup()
+        transferring = true
         isrcIds.values.forEach { [weak self] id in
             group.enter()
             SpotifyAPI.manager.getTrackFromIsrc(id) {tracks, _, error in
@@ -91,8 +94,11 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
                 description: self.playlist.attributes?.description?.standard ?? "",
                 uris: self.spotifyTracks.map { $0.uri },
                 isPublic: false, collaborative: false) { success, error in
-                    // notify the view that the process completed
-                    print("Success \(success), Error: \(error.debugDescription)")
+                // notify the view that the process completed
+                DispatchQueue.main.async {
+                    self.transferring = false
+                }
+                print("Success \(success), Error: \(error.debugDescription)")
             }
             
         }

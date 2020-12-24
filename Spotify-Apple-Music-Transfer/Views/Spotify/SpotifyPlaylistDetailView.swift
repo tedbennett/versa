@@ -32,6 +32,14 @@ struct SpotifyPlaylistDetailView: View {
                 Image(systemName: "chevron.right")
             }
         }))
+        .blur(radius: viewModel.transferring ? 3.0 : 0.0)
+        if (viewModel.transferring) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 30, style: .continuous).frame(width: 150, height: 150)
+                    .foregroundColor(.gray)
+                ProgressView()
+            }
+        }
     }
 }
 

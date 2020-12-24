@@ -13,6 +13,7 @@ class SpotifyPlaylistDetailViewModel: ObservableObject {
     var playlist: SpotifyAPI.PlaylistSimplified
     
     @Published var songs = [SpotifyAPI.PlaylistTrack]()
+    @Published var transferring = false
     
     private var appleMusicSongs = [AppleMusicAPI.Song]()
     
@@ -38,6 +39,7 @@ class SpotifyPlaylistDetailViewModel: ObservableObject {
     
     func transferToAppleMusic() {
         let group = DispatchGroup()
+        transferring = true
         songs.forEach { song in
             group.enter()
             if let isrc = song.externalIds?.isrc {
@@ -58,10 +60,13 @@ class SpotifyPlaylistDetailViewModel: ObservableObject {
                 description: nil,
                 songs: self?.appleMusicSongs ?? [],
                 librarySongs: []) { playlists, error in
-                    guard let playlists = playlists, !playlists.isEmpty else {
-                        print(error.debugDescription)
-                        return
-                    }
+                DispatchQueue.main.async {
+                    self?.transferring = false
+                }
+                guard let playlists = playlists, !playlists.isEmpty else {
+                    print(error.debugDescription)
+                    return
+                }
             }
         }
         
