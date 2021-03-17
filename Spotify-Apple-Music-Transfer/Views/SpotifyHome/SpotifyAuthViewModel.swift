@@ -11,7 +11,9 @@ import SpotifyAPI
 class SpotifyAuthViewModel: ObservableObject {
     static let shared = SpotifyAuthViewModel()
     
-    private init() {}
+    private init() {
+        initialize()
+    }
     
     @Published var authenticated = false
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpotifyPlaylistList: View {
-    @ObservedObject var viewModel = SpotifyPlaylistsViewModel.shared
+    @ObservedObject var viewModel = SpotifyPlaylistsViewModel()
     
     var body: some View {
         NavigationView {

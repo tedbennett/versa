@@ -19,16 +19,32 @@ struct AppleMusicPlaylistDetail: View {
         ZStack {
             List {
                 ForEach(viewModel.songs) { song in
-                    SongItem(name: song.attributes?.name, artist: song.attributes?.artistName, imageUrl: viewModel.getImageUrl(from: song.attributes?.artwork.url))
+                    HStack {
+                        SongItem(name: song.attributes?.name, artist: song.attributes?.artistName, imageUrl: viewModel.getImageUrl(from: song.attributes?.artwork.url))
+                        Spacer()
+                        if viewModel.searching {
+                            ProgressView()
+                        } else {
+                            Image(systemName: viewModel.spotifyTracks[song.id] != nil ? "checkmark" : "xmark")
+                        }
+                    
+                    }
                 }
             }.onAppear {
-                viewModel.getPlaylistSongs()
-            }.navigationTitle(viewModel.getPlaylistName())
+                if viewModel.spotifyTracks.isEmpty {
+                    viewModel.findSongsOnSpotify()
+                }
+            }.navigationTitle(viewModel.playlistName())
             .navigationBarItems(trailing: Button(action: {
                 viewModel.transferToSpotify()
             }, label: {
-                Text("Transfer")
-            }).disabled(!viewModel.isrcIdsFetched)
+                HStack {
+                    if (viewModel.searching) {
+                        ProgressView()
+                    }
+                    Text("Transfer").padding(.leading, 5).animation(.easeInOut)
+                }
+            }).disabled(viewModel.searching)
             )
             .blur(radius: viewModel.transferring ? 3.0 : 0.0)
             if (viewModel.transferring) {

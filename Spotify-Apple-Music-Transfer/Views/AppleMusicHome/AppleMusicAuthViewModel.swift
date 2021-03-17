@@ -19,7 +19,7 @@ class AppleMusicAuthViewModel: ObservableObject {
     
     private var SKController = SKCloudServiceController()
     
-    private var developerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjZQRFZEWDQ3M0sifQ.eyJpc3MiOiI5WTJBTUg1UzIzIiwiZXhwIjoxNjA4ODU3NTY2LCJpYXQiOjE1OTMwNzY5NjZ9.dyrmzVt1kIMk6UWYBPmpA3fMCqVW4TBLdty5kZTQOfnQ6Z-CtrTVx4F9kaTD03DWd6VQe_EFGmE1s41fdPQ4bg"
+    private var developerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IlEzM0taS0QzS0MifQ.eyJpc3MiOiI5WTJBTUg1UzIzIiwiZXhwIjoxNjMxNTI3Nzg3LCJpYXQiOjE2MTU3NTQzODd9.NkPw4EQu0oOlTJDE52pEaWjCSGwPD_vOly-3YH8xjEwkaaecJSHt39E4qNV1l5YZnzD_d7YjN-gvNuzjoQkKIg"
     
     func authorize() {
         SKCloudServiceController.requestAuthorization { status in

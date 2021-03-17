@@ -10,23 +10,13 @@ import Combine
 import SpotifyAPI
 
 class SpotifyPlaylistsViewModel: ObservableObject {
-    static let shared = SpotifyPlaylistsViewModel()
-    
-    private init() {}
     
     @Published var playlists = [SpotifyAPI.PlaylistSimplified]()
     
-    //var objectWillChange = ObservableObjectPublisher()
-    
     func getLibraryPlaylists() {
-        
-        SpotifyAPI.manager.getOwnPlaylists { playlists, error in
-            guard error == nil else {
-                print(error.debugDescription)
-                return
-            }
+        ServiceManager.shared.getSpotifyPlaylists { [weak self] playlists in
             DispatchQueue.main.async {
-                self.playlists = playlists
+                self?.playlists = playlists
             }
         }
     }

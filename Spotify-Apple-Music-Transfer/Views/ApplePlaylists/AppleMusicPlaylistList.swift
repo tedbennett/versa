@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppleMusicPlaylistList: View {
     
-    @ObservedObject var viewModel = AppleMusicPlaylistsViewModel.shared
+    @ObservedObject var viewModel = AppleMusicPlaylistsViewModel()
     
     var body: some View {
         
