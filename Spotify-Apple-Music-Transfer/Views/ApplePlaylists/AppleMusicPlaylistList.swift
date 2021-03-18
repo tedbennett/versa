@@ -25,11 +25,11 @@ struct AppleMusicPlaylistList: View {
                         })
                 }
             }.navigationTitle("Apple Music Playlists")
-            .onAppear {
-                if viewModel.playlists.isEmpty {
-                    viewModel.getLibraryPlaylists()
-                }
-            }
+//            .onAppear {
+//                if viewModel.playlists.isEmpty {
+//                    viewModel.getLibraryPlaylists()
+//                }
+//            }
         }
     }
 }

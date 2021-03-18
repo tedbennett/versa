@@ -21,11 +21,6 @@ struct SpotifyPlaylistList: View {
                         })
                 }
             }.navigationTitle("Spotify Playlists")
-            .onAppear {
-                if viewModel.playlists.isEmpty {
-                    viewModel.getLibraryPlaylists()
-                }
-            }
         }
     }
 }

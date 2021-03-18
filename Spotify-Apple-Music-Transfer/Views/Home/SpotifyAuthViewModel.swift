@@ -12,14 +12,14 @@ class SpotifyAuthViewModel: ObservableObject {
     static let shared = SpotifyAuthViewModel()
     
     private init() {
-        initialize()
+        SpotifyAPI.manager.initialize(clientId: "e164f018712e4c6ba906a595591ff010", redirectUris: ["apple-music-spotify-transfer://oauth-callback/"] , scopes: [.playlistModifyPrivate, .playlistModifyPublic])
+        authenticated = SpotifyAPI.manager.isAuthorised()
+        if authenticated {
+            authorize()
+        }
     }
     
     @Published var authenticated = false
-    
-    func initialize() {
-        SpotifyAPI.manager.initialize(clientId: "e164f018712e4c6ba906a595591ff010", redirectUris: ["apple-music-spotify-transfer://oauth-callback/"] , scopes: [.playlistModifyPrivate, .playlistModifyPublic])
-    }
     
     func authorize() {
         SpotifyAPI.manager.authorize { success in

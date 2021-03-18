@@ -13,6 +13,10 @@ class SpotifyPlaylistsViewModel: ObservableObject {
     
     @Published var playlists = [SpotifyAPI.PlaylistSimplified]()
     
+    init() {
+        getLibraryPlaylists()
+    }
+    
     func getLibraryPlaylists() {
         ServiceManager.shared.getSpotifyPlaylists { [weak self] playlists in
             DispatchQueue.main.async {

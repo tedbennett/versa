@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SpotifyAPI
+import AlertToast
 
 struct SpotifyPlaylistDetailView: View {
     @ObservedObject var viewModel: SpotifyPlaylistDetailViewModel
@@ -47,13 +48,15 @@ struct SpotifyPlaylistDetailView: View {
         }).disabled(viewModel.searching)
         )
         .blur(radius: viewModel.transferring ? 3.0 : 0.0)
-        if (viewModel.transferring) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 30, style: .continuous).frame(width: 150, height: 150)
-                    .foregroundColor(.gray)
-                ProgressView()
-            }
+        .toast(isPresenting: $viewModel.transferring) {
+            AlertToast(type: .loading, title: "Transferring...", subTitle: nil)
         }
+        .toast(isPresenting: $viewModel.transferSuccess, duration: 2.0, tapToDismiss: false, alert: {
+            AlertToast(type: .complete(.primary), title: "Transfer complete!", subTitle: nil)
+        }, completion: {_ in})
+        .toast(isPresenting: $viewModel.transferFail, duration: 2.0, tapToDismiss: false, alert: {
+            AlertToast(type: .error(.primary), title: "Transfer failed", subTitle: "An error occured")
+        }, completion: {_ in})
     }
 }
 

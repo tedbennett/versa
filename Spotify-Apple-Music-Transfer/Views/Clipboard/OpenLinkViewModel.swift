@@ -14,7 +14,7 @@ class OpenLinkViewModel: ObservableObject {
     static var shared = OpenLinkViewModel()
     
     private init() {}
-
+    
     @Published var name: String?
     @Published var artistName: String?
     @Published var albumName: String?
@@ -22,14 +22,16 @@ class OpenLinkViewModel: ObservableObject {
     @Published var numTracks: Int?
     @Published var url: URL?
     
-    @Published var state = State.noUrl {
+    @Published var state = ClipboardState.searching {
         didSet {
-            switch state {
-                case .spotifySong, .spotifyAlbum, .spotifyArtist, .spotifyPlaylist,
-                     .appleMusicSong, .appleMusicAlbum, .appleMusicArtist, .appleMusicPlaylist:
-                    foundLink = true
-                default:
-                    foundLink = false
+            DispatchQueue.main.async {
+                switch self.state {
+                    case .spotifySong, .spotifyAlbum, .spotifyArtist, .spotifyPlaylist,
+                         .appleMusicSong, .appleMusicAlbum, .appleMusicArtist, .appleMusicPlaylist:
+                        self.foundLink = true
+                    default:
+                        self.foundLink = false
+                }
             }
         }
     }
@@ -38,10 +40,25 @@ class OpenLinkViewModel: ObservableObject {
     
     private var lastCheckedContents = ""
     
+    private func clear() {
+        state = .searching
+        name = nil
+        artistName = nil
+        albumName = nil
+        imageUrl = nil
+        numTracks = nil
+        url = nil
+    }
+    
     func parseClipboard(_ contents: String?) {
-        guard let contents = contents, contents != lastCheckedContents else {
+        guard let contents = contents, contents != "" else {
+            state = .noUrl
             return
         }
+        guard contents != lastCheckedContents else {
+            return
+        }
+        clear()
         lastCheckedContents = contents
         guard let url = URL(string: contents), let host = url.host, url.pathComponents.count > 1 else {
             state = .invalidUrl
@@ -126,12 +143,17 @@ class OpenLinkViewModel: ObservableObject {
             }
             
             SpotifyAPI.manager.getTrackFromIsrc(attributes.isrc) { songs, url, error in
-                if let urlString = songs.first?.externalUrls.spotify {
+                guard let urlString = songs.first?.externalUrls.spotify else {
+                    DispatchQueue.main.async {
+                        self.state = .failedToFindOnSpotify
+                    }
+                    return
+                }
                     DispatchQueue.main.async {
                         self.url = URL(string: urlString)
                         self.state = .spotifySong
                     }
-                }
+                
             }
         }
     }
@@ -150,11 +172,18 @@ class OpenLinkViewModel: ObservableObject {
             }
             
             // No ISRC for albums so we need to search...
-            SpotifyAPI.manager.search(for: "\(attributes.name) \(attributes.artistName)") { (albums: [SpotifyAPI.Album], url, error) in
-                if let urlString = albums.first?.externalUrls.spotify {
-                    self.url = URL(string: urlString)
-                    self.state = .spotifyAlbum
+            let search = "\(attributes.name) \(attributes.artistName)".replacingOccurrences(of: " ", with: "+")
+            SpotifyAPI.manager.search(for: search) { (albums: [SpotifyAPI.AlbumSimplified], url, error) in
+                guard let urlString = albums.first?.externalUrls.spotify else {
+                    DispatchQueue.main.async {
+                        self.state = .failedToFindOnSpotify
+                    }
+                    return
                 }
+                    DispatchQueue.main.async {
+                        self.url = URL(string: urlString)
+                        self.state = .spotifyAlbum
+                    }
             }
         }
     }
@@ -171,9 +200,16 @@ class OpenLinkViewModel: ObservableObject {
             }
             
             // No ISRC for albums so we need to search...
-            SpotifyAPI.manager.search(for: "\(attributes.name)") { (albums: [SpotifyAPI.Artist], url, error) in
-                if let urlString = albums.first?.externalUrls.spotify {
+            SpotifyAPI.manager.search(for: "\(attributes.name)".replacingOccurrences(of: " ", with: "+")) { (artists: [SpotifyAPI.Artist], url, error) in
+                guard let urlString = artists.first?.externalUrls.spotify else {
+                    DispatchQueue.main.async {
+                        self.state = .failedToFindOnSpotify
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
                     self.url = URL(string: urlString)
+                    self.imageUrl = artists.first?.images.first?.url
                     self.state = .spotifyArtist
                 }
             }
@@ -189,6 +225,7 @@ class OpenLinkViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.name = attributes.name
+                self.artistName = "Apple Music Playlist"
                 self.imageUrl = self.getAppleMusicImageUrl(from: attributes.artwork?.url)
                 self.state = .spotifyPlaylist
             }
@@ -210,8 +247,16 @@ class OpenLinkViewModel: ObservableObject {
             }
             if let isrc = song.externalIds.isrc {
                 AppleMusicAPI.manager.getCatalogSongByIsrcId(isrcId: isrc) { song, error in
-                    self.url = song?.attributes?.url
-                    self.state = .appleMusicSong
+                    guard let url = song?.attributes?.url else {
+                        DispatchQueue.main.async {
+                            self.state = .failedToFindOnAppleMusic
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.url = url
+                        self.state = .appleMusicSong
+                    }
                 }
             }
         }
@@ -224,15 +269,24 @@ class OpenLinkViewModel: ObservableObject {
                 self.state = .failedToGetResources
                 return
             }
+            let artistName = album.artists.first?.name ?? "Unknown Artist"
             DispatchQueue.main.async {
-                self.artistName = album.artists.first?.name ?? "Unknown Artist"
+                self.artistName = artistName
                 self.name = album.name
                 self.imageUrl = album.images.first?.url
             }
             
-            AppleMusicAPI.manager.searchCatalogAlbums(term: "\(self.artistName!) \(self.name!)") { albums, error in
-                self.url = albums?.first?.attributes?.url
-                self.state = .appleMusicAlbum
+            AppleMusicAPI.manager.searchCatalogAlbums(term: "\(artistName) \(album.name)") { albums, error in
+                guard let url = albums?.first?.attributes?.url else {
+                    DispatchQueue.main.async {
+                        self.state = .failedToFindOnAppleMusic
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.url = url
+                    self.state = .appleMusicAlbum
+                }
             }
         }
     }
@@ -249,8 +303,16 @@ class OpenLinkViewModel: ObservableObject {
                 self.imageUrl = artist.images.first?.url
             }
             AppleMusicAPI.manager.searchCatalogArtists(term: artist.name) { artists, error in
-                self.url = artists?.first?.attributes?.url
-                self.state = .appleMusicArtist
+                guard let url = artists?.first?.attributes?.url else {
+                    DispatchQueue.main.async {
+                        self.state = .failedToFindOnAppleMusic
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.url = url
+                    self.state = .appleMusicArtist
+                }
             }
         }
     }
@@ -264,12 +326,21 @@ class OpenLinkViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.name = playlist.name
+                self.artistName = "Spotify Playlist"
                 self.imageUrl = playlist.images.first?.url
                 self.state = .appleMusicPlaylist
             }
         }
     }
-
+    
+    func transferToSpotify() {
+        
+    }
+    
+    func transferToAppleMusic() {
+        
+    }
+    
     
     private func getImageURL(from string: String?) -> URL? {
         guard let string = string else {
@@ -279,21 +350,26 @@ class OpenLinkViewModel: ObservableObject {
     }
     
     private func getAppleMusicImageUrl(from string: String?) -> String? {
-        return string != nil ? string!.replacingOccurrences(of: "{w}", with: String(640))
-            .replacingOccurrences(of: "{h}", with: String(640)) : nil
+        return string?.replacingOccurrences(of: "{w}", with: String(640))
+            .replacingOccurrences(of: "{h}", with: String(640))
     }
     
-    enum State {
-        case noUrl
-        case invalidUrl
-        case failedToGetResources
-        case spotifySong
-        case spotifyAlbum
-        case spotifyArtist
-        case spotifyPlaylist
-        case appleMusicSong
-        case appleMusicAlbum
-        case appleMusicArtist
-        case appleMusicPlaylist
-    }
+   
+}
+
+enum ClipboardState {
+    case searching
+    case noUrl
+    case invalidUrl
+    case failedToGetResources
+    case failedToFindOnSpotify
+    case failedToFindOnAppleMusic
+    case spotifySong
+    case spotifyAlbum
+    case spotifyArtist
+    case spotifyPlaylist
+    case appleMusicSong
+    case appleMusicAlbum
+    case appleMusicArtist
+    case appleMusicPlaylist
 }

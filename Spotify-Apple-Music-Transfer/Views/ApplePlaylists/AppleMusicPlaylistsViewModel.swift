@@ -12,6 +12,10 @@ import AppleMusicAPI
 class AppleMusicPlaylistsViewModel: ObservableObject {
     @Published var playlists = [AppleMusicAPI.LibraryPlaylist]()
     
+    init() {
+        getLibraryPlaylists()
+    }
+    
     func getLibraryPlaylists() {
         ServiceManager.shared.getAppleMusicPlaylists() { [weak self] playlists in
             DispatchQueue.main.async {

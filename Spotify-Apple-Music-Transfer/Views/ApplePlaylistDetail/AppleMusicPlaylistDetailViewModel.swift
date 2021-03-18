@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import AppleMusicAPI
 import SpotifyAPI
 
@@ -15,6 +16,8 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
     @Published var songs = [AppleMusicAPI.LibrarySong]()
     @Published var searching = true
     @Published var transferring = false
+    @Published var transferSuccess = false
+    @Published var transferFail = false
     
     var spotifyTracks = [String: String]()
     
@@ -50,7 +53,14 @@ class AppleMusicPlaylistDetailViewModel: ObservableObject {
         ServiceManager.shared.transferPlaylistToSpotify(uris: uris, name: playlistName(), description: "") { [weak self] success in
             DispatchQueue.main.async {
                 self?.transferring = false
+                if success {
+                    self?.transferSuccess = true
+                } else {
+                    self?.transferFail = true
+                }
+                
             }
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         }
     }
     

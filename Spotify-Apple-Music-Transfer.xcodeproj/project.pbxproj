@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F0581EA254DC689002410FD /* AppleMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0581E9254DC689002410FD /* AppleMusicView.swift */; };
-		9F0581ED254DC693002410FD /* SpotifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0581EC254DC693002410FD /* SpotifyView.swift */; };
 		9F37BCBA260200DB0029BFDB /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37BCB9260200DB0029BFDB /* ServiceManager.swift */; };
 		9F3BF8892602507500AA42D0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BF8882602507500AA42D0 /* LoginView.swift */; };
 		9F4C723C2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C723B2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift */; };
@@ -24,6 +22,9 @@
 		9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */; };
 		9F69002F254755080071BEBA /* SpotifyPlaylistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69002E254755080071BEBA /* SpotifyPlaylistDetailView.swift */; };
 		9F690032254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F690031254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift */; };
+		9F9088672602BC8100FB00F6 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 9F9088662602BC8100FB00F6 /* AlertToast */; };
+		9F90886A2602C9AE00FB00F6 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9088692602C9AE00FB00F6 /* ShareSheet.swift */; };
+		9F90886D26037EB700FB00F6 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F90886C26037EB700FB00F6 /* DetailView.swift */; };
 		9F91012E2549CF0C00F97C90 /* OpenLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91012D2549CF0C00F97C90 /* OpenLinkView.swift */; };
 		9F9101332549CF4F00F97C90 /* OpenLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9101322549CF4F00F97C90 /* OpenLinkViewModel.swift */; };
 		9F91EFD3254D732400A7FEFD /* ImageFromUrlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F91EFD2254D732400A7FEFD /* ImageFromUrlViewModel.swift */; };
@@ -36,8 +37,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9F0581E9254DC689002410FD /* AppleMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicView.swift; sourceTree = "<group>"; };
-		9F0581EC254DC693002410FD /* SpotifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyView.swift; sourceTree = "<group>"; };
 		9F37BCB9260200DB0029BFDB /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		9F3BF8882602507500AA42D0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9F4C72382547322F00699C0E /* Spotify-Apple-Music-Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Apple-Music-Transfer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +52,8 @@
 		9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistsViewModel.swift; sourceTree = "<group>"; };
 		9F69002E254755080071BEBA /* SpotifyPlaylistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistDetailView.swift; sourceTree = "<group>"; };
 		9F690031254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistDetailViewModel.swift; sourceTree = "<group>"; };
+		9F9088692602C9AE00FB00F6 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		9F90886C26037EB700FB00F6 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		9F91012D2549CF0C00F97C90 /* OpenLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLinkView.swift; sourceTree = "<group>"; };
 		9F9101322549CF4F00F97C90 /* OpenLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLinkViewModel.swift; sourceTree = "<group>"; };
 		9F91EFD2254D732400A7FEFD /* ImageFromUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFromUrlViewModel.swift; sourceTree = "<group>"; };
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9088672602BC8100FB00F6 /* AlertToast in Frameworks */,
 				9F4C72512547326900699C0E /* SpotifyAPI in Frameworks */,
 				9F4C724D2547325100699C0E /* AppleMusicAPI in Frameworks */,
 			);
@@ -121,28 +123,12 @@
 			path = SpotifyPlaylistDetail;
 			sourceTree = "<group>";
 		};
-		9F37BCC3260236150029BFDB /* AppleMusicHome */ = {
-			isa = PBXGroup;
-			children = (
-				9F4C72552547329600699C0E /* AppleMusicAuthViewModel.swift */,
-				9F0581E9254DC689002410FD /* AppleMusicView.swift */,
-			);
-			path = AppleMusicHome;
-			sourceTree = "<group>";
-		};
-		9F37BCC42602361D0029BFDB /* SpotifyHome */ = {
-			isa = PBXGroup;
-			children = (
-				9F4C7259254732A200699C0E /* SpotifyAuthViewModel.swift */,
-				9F0581EC254DC693002410FD /* SpotifyView.swift */,
-			);
-			path = SpotifyHome;
-			sourceTree = "<group>";
-		};
 		9F3BF8872602505F00AA42D0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				9F3BF8882602507500AA42D0 /* LoginView.swift */,
+				9F4C7259254732A200699C0E /* SpotifyAuthViewModel.swift */,
+				9F4C72552547329600699C0E /* AppleMusicAuthViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -188,8 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				9F3BF8872602505F00AA42D0 /* Home */,
-				9F37BCC42602361D0029BFDB /* SpotifyHome */,
-				9F37BCC3260236150029BFDB /* AppleMusicHome */,
 				9F37BCC2260236050029BFDB /* SpotifyPlaylistDetail */,
 				9F37BCC1260235FD0029BFDB /* SpotifyPlaylists */,
 				9F37BCC0260235F30029BFDB /* ApplePlaylistDetail */,
@@ -205,6 +189,7 @@
 		9F910138254A313B00F97C90 /* Clipboard */ = {
 			isa = PBXGroup;
 			children = (
+				9F90886C26037EB700FB00F6 /* DetailView.swift */,
 				9F9101322549CF4F00F97C90 /* OpenLinkViewModel.swift */,
 				9F91012D2549CF0C00F97C90 /* OpenLinkView.swift */,
 			);
@@ -218,6 +203,7 @@
 				9F91EFD2254D732400A7FEFD /* ImageFromUrlViewModel.swift */,
 				9F91EFD9254DAD0600A7FEFD /* PlaylistItem.swift */,
 				9F91EFDC254DAD1300A7FEFD /* SongItem.swift */,
+				9F9088692602C9AE00FB00F6 /* ShareSheet.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -248,6 +234,7 @@
 			packageProductDependencies = (
 				9F4C724C2547325100699C0E /* AppleMusicAPI */,
 				9F4C72502547326900699C0E /* SpotifyAPI */,
+				9F9088662602BC8100FB00F6 /* AlertToast */,
 			);
 			productName = "Spotify-Apple-Music-Transfer";
 			productReference = 9F4C72382547322F00699C0E /* Spotify-Apple-Music-Transfer.app */;
@@ -279,6 +266,7 @@
 			packageReferences = (
 				9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */,
 				9F4C724F2547326900699C0E /* XCRemoteSwiftPackageReference "SpotifyForSwift" */,
+				9F9088652602BC8100FB00F6 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 9F4C72392547322F00699C0E /* Products */;
 			projectDirPath = "";
@@ -311,6 +299,7 @@
 				9F9101332549CF4F00F97C90 /* OpenLinkViewModel.swift in Sources */,
 				9F91EFD7254D77FB00A7FEFD /* ImageView.swift in Sources */,
 				9F91012E2549CF0C00F97C90 /* OpenLinkView.swift in Sources */,
+				9F90886D26037EB700FB00F6 /* DetailView.swift in Sources */,
 				9F37BCBA260200DB0029BFDB /* ServiceManager.swift in Sources */,
 				9F4C723C2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift in Sources */,
 				9F91EFD3254D732400A7FEFD /* ImageFromUrlViewModel.swift in Sources */,
@@ -319,8 +308,7 @@
 				9F4C7261254732DC00699C0E /* SpotifyPlaylistList.swift in Sources */,
 				9F91EFDA254DAD0600A7FEFD /* PlaylistItem.swift in Sources */,
 				9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */,
-				9F0581EA254DC689002410FD /* AppleMusicView.swift in Sources */,
-				9F0581ED254DC693002410FD /* SpotifyView.swift in Sources */,
+				9F90886A2602C9AE00FB00F6 /* ShareSheet.swift in Sources */,
 				9F3BF8892602507500AA42D0 /* LoginView.swift in Sources */,
 				9FB8535125474968000521B0 /* SpotifyPlaylistsViewModel.swift in Sources */,
 				9F690032254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift in Sources */,
@@ -534,6 +522,14 @@
 				kind = branch;
 			};
 		};
+		9F9088652602BC8100FB00F6 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -546,6 +542,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F4C724F2547326900699C0E /* XCRemoteSwiftPackageReference "SpotifyForSwift" */;
 			productName = SpotifyAPI;
+		};
+		9F9088662602BC8100FB00F6 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F9088652602BC8100FB00F6 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
