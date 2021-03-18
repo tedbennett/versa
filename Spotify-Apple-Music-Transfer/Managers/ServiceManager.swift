@@ -87,6 +87,25 @@ class ServiceManager {
         }
     }
     
+    func findSongsOnSpotify(for songs: [AppleMusicAPI.Song], completion: @escaping ([String]) -> Void) {
+        let group = DispatchGroup()
+        let isrcIds = songs.compactMap { $0.attributes?.isrc }
+        var uris: [String] = []
+        isrcIds.forEach { isrc in
+            group.enter()
+            SpotifyAPI.manager.getTrackFromIsrc(isrc) {tracks, _, error in
+                if !tracks.isEmpty {
+                    uris.append(tracks[0].uri)
+                }
+                group.leave()
+            }
+            
+        }
+        group.notify(queue: .main) {
+            completion(uris)
+        }
+    }
+    
     func findSongsOnAppleMusic(tracks: [SpotifyAPI.PlaylistTrack], completion: @escaping ([String: AppleMusicAPI.Song]) -> Void) {
         let group = DispatchGroup()
         var ids: [String: AppleMusicAPI.Song] = [:]
@@ -135,6 +154,36 @@ class ServiceManager {
                 print(error.localizedDescription)
             }
             completion(success)
+        }
+    }
+    
+    func transferPlaylistToAppleMusic(fromId id: String, name: String, completion: @escaping (Bool) -> Void) {
+        getSpotifyPlaylist(id: id) { [weak self] tracks in
+            self?.findSongsOnAppleMusic(tracks: tracks) { map in
+                let songs = map.values.compactMap { $0 }
+                self?.transferPlaylistToAppleMusic(songs: songs, name: name) { success in
+                    completion(success)
+                }
+            }
+        }
+    }
+    
+    func transferPlaylistToSpotify(fromId id: String, name: String, completion: @escaping (Bool) -> Void) {
+        AppleMusicAPI.manager.getCatalogPlaylistSongs(id: id) { [weak self] songs, error in
+            guard error == nil, let songs = songs, !songs.isEmpty else {
+                print(error.debugDescription)
+                completion(false)
+                return
+            }
+            self?.findSongsOnSpotify(for: songs) { uris in
+                guard !uris.isEmpty else {
+                    completion(false)
+                    return
+                }
+                self?.transferPlaylistToSpotify(uris: uris, name: name, description: "") { success in
+                    completion(success)
+                }
+            }
         }
     }
 }

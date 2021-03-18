@@ -1,17 +1,17 @@
 //
-//  OpenLinkViewModel.swift
+//  ClipboardViewModel.swift
 //  Spotify-Apple-Music-Transfer
 //
 //  Created by Ted Bennett on 28/10/2020.
 //
 
-import Foundation
+import SwiftUI
 import SpotifyAPI
 import AppleMusicAPI
 
-class OpenLinkViewModel: ObservableObject {
+class ClipboardViewModel: ObservableObject {
     
-    static var shared = OpenLinkViewModel()
+    static var shared = ClipboardViewModel()
     
     private init() {}
     
@@ -21,6 +21,12 @@ class OpenLinkViewModel: ObservableObject {
     @Published var imageUrl: String?
     @Published var numTracks: Int?
     @Published var url: URL?
+    var id: String?
+    
+    @Published var presentShareSheet = false
+    @Published var transferring = false
+    @Published var transferSuccess = false
+    @Published var transferFail = false
     
     @Published var state = ClipboardState.searching {
         didSet {
@@ -48,6 +54,7 @@ class OpenLinkViewModel: ObservableObject {
         imageUrl = nil
         numTracks = nil
         url = nil
+        id = nil
     }
     
     func parseClipboard(_ contents: String?) {
@@ -149,11 +156,11 @@ class OpenLinkViewModel: ObservableObject {
                     }
                     return
                 }
-                    DispatchQueue.main.async {
-                        self.url = URL(string: urlString)
-                        self.state = .spotifySong
-                    }
-                
+                DispatchQueue.main.async {
+                    self.url = URL(string: urlString)
+                    self.state = .spotifySong
+                }
+                self.id = songs.first?.uri
             }
         }
     }
@@ -180,10 +187,11 @@ class OpenLinkViewModel: ObservableObject {
                     }
                     return
                 }
-                    DispatchQueue.main.async {
-                        self.url = URL(string: urlString)
-                        self.state = .spotifyAlbum
-                    }
+                DispatchQueue.main.async {
+                    self.url = URL(string: urlString)
+                    self.state = .spotifyAlbum
+                }
+                self.id = albums.first?.uri
             }
         }
     }
@@ -229,6 +237,7 @@ class OpenLinkViewModel: ObservableObject {
                 self.imageUrl = self.getAppleMusicImageUrl(from: attributes.artwork?.url)
                 self.state = .spotifyPlaylist
             }
+            self.id = playlists?.first?.id
         }
     }
     
@@ -330,15 +339,51 @@ class OpenLinkViewModel: ObservableObject {
                 self.imageUrl = playlist.images.first?.url
                 self.state = .appleMusicPlaylist
             }
+            self.id = playlist.id
+        }
+    }
+    
+    func addToLibrary() {
+        switch state {
+            case .spotifySong, .spotifyAlbum, .appleMusicSong, .appleMusicAlbum: break
+            default: break
         }
     }
     
     func transferToSpotify() {
-        
+        guard let id = id else {
+            return
+        }
+        transferring = true
+        ServiceManager.shared.transferPlaylistToSpotify(fromId: id, name: name ?? "New Playlist") { success in
+            DispatchQueue.main.async {
+                self.transferring = false
+                if success {
+                    self.transferSuccess = true
+                } else {
+                    self.transferFail = true
+                }
+            }
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        }
     }
     
     func transferToAppleMusic() {
-        
+        guard let id = id else {
+            return
+        }
+        transferring = true
+        ServiceManager.shared.transferPlaylistToAppleMusic(fromId: id, name: name ?? "New Playlist") { success in
+            DispatchQueue.main.async {
+                self.transferring = false
+                if success {
+                    self.transferSuccess = true
+                } else {
+                    self.transferFail = true
+                }
+            }
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        }
     }
     
     

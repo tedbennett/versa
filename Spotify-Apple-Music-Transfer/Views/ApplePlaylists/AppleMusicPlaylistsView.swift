@@ -1,5 +1,5 @@
 //
-//  AppleMusicPlaylistList.swift
+//  AppleMusicPlaylistsView.swift
 //  Spotify-Apple-Music-Transfer
 //
 //  Created by Ted Bennett on 26/10/2020.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppleMusicPlaylistList: View {
+struct AppleMusicPlaylistsView: View {
     
     @ObservedObject var viewModel = AppleMusicPlaylistsViewModel()
     
@@ -36,6 +36,6 @@ struct AppleMusicPlaylistList: View {
 
 struct AppleMusicPlaylistList_Previews: PreviewProvider {
     static var previews: some View {
-        AppleMusicPlaylistList()
+        AppleMusicPlaylistsView()
     }
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject var spotifyAuth = SpotifyAuthViewModel.shared
     @StateObject var auth = AuthViewModel.shared
     
     @State var loggedIn = false

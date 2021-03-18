@@ -10,21 +10,21 @@ import SpotifyAPI
 
 struct HomeView: View {
 
-    @ObservedObject var clipboardViewModel = OpenLinkViewModel.shared
+    @ObservedObject var clipboardViewModel = ClipboardViewModel.shared
     
     var body: some View {
         TabView {
-            AppleMusicPlaylistList().tabItem {
+            AppleMusicPlaylistsView().tabItem {
                 Text("Apple Music")
                 Image(uiImage: UIImage(named: "apple")!)
             }.navigationBarHidden(true)
 
-            SpotifyPlaylistList().tabItem {
+            SpotifyPlaylistsView().tabItem {
                 Text("Spotify")
                 Image(uiImage: UIImage(named: "spotify")!)
             }.navigationBarHidden(true)
             
-            OpenLinkView().tabItem {
+            ClipboardView().tabItem {
                 Text("Clipboard")
                 Image(systemName: "arrow.left.arrow.right.circle")
             }.navigationBarHidden(true)
