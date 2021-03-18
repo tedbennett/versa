@@ -21,6 +21,16 @@ struct SpotifyPlaylistsView: View {
                         })
                 }
             }.navigationTitle("Spotify Playlists")
+            .listStyle(PlainListStyle())
+            .navigationBarItems(trailing: Button {
+                viewModel.refresh()
+            } label: {
+                if viewModel.loading {
+                    ProgressView()
+                } else {
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                }
+            })
         }
     }
 }

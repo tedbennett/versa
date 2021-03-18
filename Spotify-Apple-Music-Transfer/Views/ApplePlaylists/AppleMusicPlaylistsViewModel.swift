@@ -11,6 +11,7 @@ import AppleMusicAPI
 
 class AppleMusicPlaylistsViewModel: ObservableObject {
     @Published var playlists = [AppleMusicAPI.LibraryPlaylist]()
+    @Published var loading = false
     
     init() {
         getLibraryPlaylists()
@@ -20,8 +21,14 @@ class AppleMusicPlaylistsViewModel: ObservableObject {
         ServiceManager.shared.getAppleMusicPlaylists() { [weak self] playlists in
             DispatchQueue.main.async {
                 self?.playlists = playlists
+                self?.loading = false
             }
         }
+    }
+    
+    func refresh() {
+        loading = true
+        getLibraryPlaylists()
     }
     
     func getImageUrl(from urlString: String?, dimension: Int = 640) -> String? {

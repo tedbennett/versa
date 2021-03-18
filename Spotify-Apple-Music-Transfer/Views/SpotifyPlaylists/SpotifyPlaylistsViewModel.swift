@@ -12,6 +12,7 @@ import SpotifyAPI
 class SpotifyPlaylistsViewModel: ObservableObject {
     
     @Published var playlists = [SpotifyAPI.PlaylistSimplified]()
+    @Published var loading = true
     
     init() {
         getLibraryPlaylists()
@@ -21,7 +22,14 @@ class SpotifyPlaylistsViewModel: ObservableObject {
         ServiceManager.shared.getSpotifyPlaylists { [weak self] playlists in
             DispatchQueue.main.async {
                 self?.playlists = playlists
+                self?.loading = false
             }
         }
     }
+    
+    func refresh() {
+        loading = true
+        getLibraryPlaylists()
+    }
+    
 }
