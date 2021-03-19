@@ -33,7 +33,7 @@ class AuthViewModel: ObservableObject {
         if UserDefaults.standard.bool(forKey: "LoggedInAppleMusic") {
             authoriseAppleMusic()
         }
-        SpotifyAPI.manager.initialize(clientId: "e164f018712e4c6ba906a595591ff010", redirectUris: ["apple-music-spotify-transfer://oauth-callback/"] , scopes: [.playlistModifyPrivate, .playlistModifyPublic])
+        SpotifyAPI.manager.initialize(clientId: "e164f018712e4c6ba906a595591ff010", redirectUris: ["apple-music-spotify-transfer://oauth-callback/"] , scopes: [.playlistModifyPrivate, .playlistModifyPublic, .userLibraryRead, .userLibraryModify])
         if SpotifyAPI.manager.isAuthorised() {
             authoriseSpotify()
         }
@@ -63,6 +63,15 @@ class AuthViewModel: ObservableObject {
         SpotifyAPI.manager.authorize { success in
             self.spotifyAuthorised = success
         }
+    }
+    
+    func logoutSpotify() {
+        SpotifyAPI.manager.forgetTokens()
+        spotifyAuthorised = false
+    }
+    
+    func logoutAppleMusic() {
+        appleMusicAuthorised = false
     }
 }
 

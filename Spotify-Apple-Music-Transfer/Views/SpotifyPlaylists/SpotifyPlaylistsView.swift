@@ -31,6 +31,11 @@ struct SpotifyPlaylistsView: View {
                     Image(systemName: "arrow.triangle.2.circlepath")
                 }
             })
+            .navigationBarItems(leading: Button {
+                AuthViewModel.shared.logoutSpotify()
+            } label: {
+                Text("Logout")
+            })
         }
     }
 }

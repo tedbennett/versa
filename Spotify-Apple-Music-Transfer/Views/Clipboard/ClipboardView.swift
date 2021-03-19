@@ -20,24 +20,27 @@ struct ClipboardView: View {
     }
     
     var noUrl: some View {
-        VStack(spacing: 30) {
+        VStack {
             Image(systemName: "exclamationmark.triangle").font(.largeTitle)
             Text("Couldn't find a URL in the clipboard").multilineTextAlignment(.center)
             Text("Copy the url for a song, album or artist on Apple Music or Spotify, and open this app to convert link for the other music service").multilineTextAlignment(.center)
+                .padding(20)
         }.foregroundColor(.gray)
     }
     
     var invalidUrl: some View {
-        VStack(spacing: 30) {
+        VStack {
             Image(systemName: "exclamationmark.triangle").font(.largeTitle)
             Text("Oops! The URL in the clipboard is not a valid Spotify or Apple Music link").multilineTextAlignment(.center)
+                .padding(20)
         }.foregroundColor(.gray)
     }
     
     var failedToFindOnSpotify: some View {
-        VStack(spacing: 30) {
+        VStack {
             Image(systemName: "exclamationmark.triangle").font(.largeTitle)
             Text("Oops! The requested resource could not be found on Spotify").multilineTextAlignment(.center)
+                .padding(20)
         }.foregroundColor(.gray)
     }
     

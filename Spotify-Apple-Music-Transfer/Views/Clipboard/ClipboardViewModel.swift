@@ -26,6 +26,7 @@ class ClipboardViewModel: ObservableObject {
     @Published var presentShareSheet = false
     @Published var transferring = false
     @Published var transferSuccess = false
+    @Published var addToLibrarySuccess = false
     @Published var transferFail = false
     
     @Published var state = ClipboardState.searching {
@@ -160,7 +161,7 @@ class ClipboardViewModel: ObservableObject {
                     self.url = URL(string: urlString)
                     self.state = .spotifySong
                 }
-                self.id = songs.first?.uri
+                self.id = songs.first?.id
             }
         }
     }
@@ -191,7 +192,7 @@ class ClipboardViewModel: ObservableObject {
                     self.url = URL(string: urlString)
                     self.state = .spotifyAlbum
                 }
-                self.id = albums.first?.uri
+                self.id = albums.first?.id
             }
         }
     }
@@ -266,6 +267,7 @@ class ClipboardViewModel: ObservableObject {
                         self.url = url
                         self.state = .appleMusicSong
                     }
+                    self.id = song?.id
                 }
             }
         }
@@ -296,6 +298,7 @@ class ClipboardViewModel: ObservableObject {
                     self.url = url
                     self.state = .appleMusicAlbum
                 }
+                self.id = albums?.first?.id
             }
         }
     }
@@ -343,9 +346,57 @@ class ClipboardViewModel: ObservableObject {
         }
     }
     
+    private func transferDidComplete(success: Bool) {
+        self.transferring = false
+        if success {
+            self.transferSuccess = true
+        } else {
+            self.transferFail = true
+        }
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+    }
+    
+    private func processDidComplete(success: Bool) {
+        self.transferring = false
+        if success {
+            self.addToLibrarySuccess = true
+        } else {
+            self.transferFail = true
+        }
+        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+    }
+    
     func addToLibrary() {
+        guard let id = id else {
+            transferFail = true
+            return
+        }
+        transferring = true
         switch state {
-            case .spotifySong, .spotifyAlbum, .appleMusicSong, .appleMusicAlbum: break
+            case .spotifySong:
+                ServiceManager.shared.addSongToSpotify(id: id) { [weak self] success in
+                    DispatchQueue.main.async {
+                        self?.processDidComplete(success: success)
+                    }
+                }
+            case .spotifyAlbum:
+                ServiceManager.shared.addAlbumToSpotify(id: id) { [weak self] success in
+                    DispatchQueue.main.async {
+                        self?.processDidComplete(success: success)
+                    }
+                }
+            case .appleMusicSong:
+                ServiceManager.shared.addSongToAppleMusic(id: id) { [weak self] success in
+                    DispatchQueue.main.async {
+                        self?.processDidComplete(success: success)
+                    }
+                }
+            case .appleMusicAlbum:
+                ServiceManager.shared.addAlbumToAppleMusic(id: id) { [weak self] success in
+                    DispatchQueue.main.async {
+                        self?.processDidComplete(success: success)
+                    }
+                }
             default: break
         }
     }
@@ -355,16 +406,10 @@ class ClipboardViewModel: ObservableObject {
             return
         }
         transferring = true
-        ServiceManager.shared.transferPlaylistToSpotify(fromId: id, name: name ?? "New Playlist") { success in
+        ServiceManager.shared.transferPlaylistToSpotify(fromId: id, name: name ?? "New Playlist") { [weak self] success in
             DispatchQueue.main.async {
-                self.transferring = false
-                if success {
-                    self.transferSuccess = true
-                } else {
-                    self.transferFail = true
-                }
+                self?.transferDidComplete(success: success)
             }
-            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         }
     }
     
@@ -373,16 +418,10 @@ class ClipboardViewModel: ObservableObject {
             return
         }
         transferring = true
-        ServiceManager.shared.transferPlaylistToAppleMusic(fromId: id, name: name ?? "New Playlist") { success in
+        ServiceManager.shared.transferPlaylistToAppleMusic(fromId: id, name: name ?? "New Playlist") { [weak self] success in
             DispatchQueue.main.async {
-                self.transferring = false
-                if success {
-                    self.transferSuccess = true
-                } else {
-                    self.transferFail = true
-                }
+                self?.transferDidComplete(success: success)
             }
-            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
         }
     }
     
@@ -399,7 +438,7 @@ class ClipboardViewModel: ObservableObject {
             .replacingOccurrences(of: "{h}", with: String(640))
     }
     
-   
+    
 }
 
 enum ClipboardState {

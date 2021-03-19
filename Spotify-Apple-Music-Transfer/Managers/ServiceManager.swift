@@ -186,4 +186,40 @@ class ServiceManager {
             }
         }
     }
+    
+    func addSongToSpotify(id: String, completion: @escaping (Bool) -> Void) {
+        SpotifyAPI.manager.addTracksToLibrary(ids: [id]) { success, error in
+            if error != nil {
+                print(error.debugDescription)
+            }
+            completion(success)
+        }
+    }
+    
+    func addAlbumToSpotify(id: String, completion: @escaping (Bool) -> Void) {
+        SpotifyAPI.manager.addAlbumsToLibrary(ids: [id]) { success, error in
+            if error != nil {
+                print(error.debugDescription)
+            }
+            completion(success)
+        }
+    }
+    
+    func addSongToAppleMusic(id: String, completion: @escaping (Bool) -> Void) {
+        AppleMusicAPI.manager.addSongsToLibrary(songs: [id]) { success, error in
+            if error != nil {
+                print(error.debugDescription)
+            }
+            completion(success)
+        }
+    }
+    
+    func addAlbumToAppleMusic(id: String, completion: @escaping (Bool) -> Void) {
+        AppleMusicAPI.manager.addAlbumsToLibrary(albums: [id]) { success, error in
+            if error != nil {
+                print(error.debugDescription)
+            }
+            completion(success)
+        }
+    }
 }
