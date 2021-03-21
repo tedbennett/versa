@@ -35,11 +35,6 @@ struct AppleMusicPlaylistsView: View {
                     Image(systemName: "arrow.triangle.2.circlepath")
                 }
             })
-            .navigationBarItems(leading: Button {
-                AuthViewModel.shared.logoutAppleMusic()
-            } label: {
-                Text("Logout")
-            })
         }
     }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0CE7712604A3BE00DACCC9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE7702604A3BE00DACCC9 /* SettingsView.swift */; };
+		9F0CE7812604B11000DACCC9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE7802604B11000DACCC9 /* Environment.swift */; };
+		9F0CE7842604B18600DACCC9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9F0CE7832604B18600DACCC9 /* .gitignore */; };
+		9F0CE7FD26062E2800DACCC9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE7FC26062E2800DACCC9 /* ContentView.swift */; };
+		9F0CE80126065E4F00DACCC9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE80026065E4F00DACCC9 /* AuthManager.swift */; };
 		9F37BCBA260200DB0029BFDB /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37BCB9260200DB0029BFDB /* ServiceManager.swift */; };
 		9F3BF8892602507500AA42D0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BF8882602507500AA42D0 /* LoginView.swift */; };
 		9F4C723C2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C723B2547322F00699C0E /* Spotify_Apple_Music_TransferApp.swift */; };
@@ -15,7 +20,6 @@
 		9F4C72432547323100699C0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C72422547323100699C0E /* Preview Assets.xcassets */; };
 		9F4C724D2547325100699C0E /* AppleMusicAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C724C2547325100699C0E /* AppleMusicAPI */; };
 		9F4C72512547326900699C0E /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 9F4C72502547326900699C0E /* SpotifyAPI */; };
-		9F4C72562547329600699C0E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C72552547329600699C0E /* AuthViewModel.swift */; };
 		9F4C725D254732CF00699C0E /* AppleMusicPlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C725C254732CF00699C0E /* AppleMusicPlaylistsView.swift */; };
 		9F4C7261254732DC00699C0E /* SpotifyPlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C7260254732DC00699C0E /* SpotifyPlaylistsView.swift */; };
 		9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */; };
@@ -36,6 +40,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F0CE7702604A3BE00DACCC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9F0CE7802604B11000DACCC9 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		9F0CE7832604B18600DACCC9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9F0CE7FC26062E2800DACCC9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9F0CE80026065E4F00DACCC9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		9F37BCB9260200DB0029BFDB /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		9F3BF8882602507500AA42D0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9F4C72382547322F00699C0E /* Spotify-Apple-Music-Transfer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify-Apple-Music-Transfer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,7 +53,6 @@
 		9F4C723F2547323100699C0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F4C72422547323100699C0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9F4C72442547323100699C0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9F4C72552547329600699C0E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		9F4C725C254732CF00699C0E /* AppleMusicPlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistsView.swift; sourceTree = "<group>"; };
 		9F4C7260254732DC00699C0E /* SpotifyPlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlaylistsView.swift; sourceTree = "<group>"; };
 		9F5E52FB254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistsViewModel.swift; sourceTree = "<group>"; };
@@ -77,10 +85,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F0CE76F2604A3AF00DACCC9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9F0CE7702604A3BE00DACCC9 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9F0CE7FB26062E1200DACCC9 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				9F0CE7FC26062E2800DACCC9 /* ContentView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		9F37BCB8260200D00029BFDB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				9F37BCB9260200DB0029BFDB /* ServiceManager.swift */,
+				9F0CE80026065E4F00DACCC9 /* AuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -125,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				9F3BF8882602507500AA42D0 /* LoginView.swift */,
-				9F4C72552547329600699C0E /* AuthViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -133,6 +157,7 @@
 		9F4C722F2547322F00699C0E = {
 			isa = PBXGroup;
 			children = (
+				9F0CE7832604B18600DACCC9 /* .gitignore */,
 				9F4C723A2547322F00699C0E /* Spotify-Apple-Music-Transfer */,
 				9F4C72392547322F00699C0E /* Products */,
 			);
@@ -155,6 +180,7 @@
 				9F37BCB8260200D00029BFDB /* Managers */,
 				9F4C72532547327700699C0E /* Views */,
 				9F4C72412547323100699C0E /* Preview Content */,
+				9F0CE7802604B11000DACCC9 /* Environment.swift */,
 			);
 			path = "Spotify-Apple-Music-Transfer";
 			sourceTree = "<group>";
@@ -170,6 +196,8 @@
 		9F4C72532547327700699C0E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F0CE7FB26062E1200DACCC9 /* Content */,
+				9F0CE76F2604A3AF00DACCC9 /* Settings */,
 				9F3BF8872602505F00AA42D0 /* Login */,
 				9F37BCC2260236050029BFDB /* SpotifyPlaylistDetail */,
 				9F37BCC1260235FD0029BFDB /* SpotifyPlaylists */,
@@ -288,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F4C72432547323100699C0E /* Preview Assets.xcassets in Resources */,
+				9F0CE7842604B18600DACCC9 /* .gitignore in Resources */,
 				9F4C72402547323100699C0E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,16 +339,19 @@
 				9F91EFD3254D732400A7FEFD /* ImageFromUrlViewModel.swift in Sources */,
 				9F91EFDD254DAD1300A7FEFD /* SongItem.swift in Sources */,
 				9F69002F254755080071BEBA /* SpotifyPlaylistDetailView.swift in Sources */,
+				9F0CE7FD26062E2800DACCC9 /* ContentView.swift in Sources */,
 				9F4C7261254732DC00699C0E /* SpotifyPlaylistsView.swift in Sources */,
 				9F91EFDA254DAD0600A7FEFD /* PlaylistItem.swift in Sources */,
+				9F0CE7812604B11000DACCC9 /* Environment.swift in Sources */,
 				9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */,
 				9F90886A2602C9AE00FB00F6 /* ShareSheet.swift in Sources */,
 				9F3BF8892602507500AA42D0 /* LoginView.swift in Sources */,
 				9FB8535125474968000521B0 /* SpotifyPlaylistsViewModel.swift in Sources */,
 				9F690032254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift in Sources */,
 				9FB8535925474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift in Sources */,
-				9F4C72562547329600699C0E /* AuthViewModel.swift in Sources */,
 				9FB8535425474EE0000521B0 /* AppleMusicPlaylistDetail.swift in Sources */,
+				9F0CE7712604A3BE00DACCC9 /* SettingsView.swift in Sources */,
+				9F0CE80126065E4F00DACCC9 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

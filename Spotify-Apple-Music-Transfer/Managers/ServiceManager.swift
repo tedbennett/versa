@@ -13,13 +13,6 @@ class ServiceManager {
     static var shared = ServiceManager()
     private init() {}
     
-    func authoriseSpotify() {
-        
-    }
-    
-    func authoriseAppleMusic() {
-        
-    }
     
     func getSpotifyPlaylists(completion: @escaping ([SpotifyAPI.PlaylistSimplified]) -> Void) {
         SpotifyAPI.manager.getOwnPlaylists { playlists, error in

@@ -10,7 +10,10 @@ import SwiftUI
 struct ClipboardView: View {
     
     @ObservedObject var viewModel = ClipboardViewModel.shared
+    @ObservedObject var auth = AuthManager.shared
     @State var isDisplayed = false
+    
+    @Binding var currentTab: Int
     
     var searching: some View {
         VStack(spacing: 30) {
@@ -21,7 +24,7 @@ struct ClipboardView: View {
     
     var noUrl: some View {
         VStack {
-            Image(systemName: "exclamationmark.triangle").font(.largeTitle)
+            Image(systemName: "exclamationmark.triangle").font(.largeTitle).padding(20)
             Text("Couldn't find a URL in the clipboard").multilineTextAlignment(.center)
             Text("Copy the url for a song, album or artist on Apple Music or Spotify, and open this app to convert link for the other music service").multilineTextAlignment(.center)
                 .padding(20)

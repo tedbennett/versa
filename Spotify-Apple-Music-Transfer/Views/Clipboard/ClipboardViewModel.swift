@@ -174,13 +174,15 @@ class ClipboardViewModel: ObservableObject {
                 return
             }
             DispatchQueue.main.async {
-                self.name = attributes.name
+                self.name = attributes.name.replacingOccurrences(of: " - Single", with: "")
                 self.artistName = attributes.artistName
                 self.imageUrl = self.getAppleMusicImageUrl(from: attributes.artwork?.url)
             }
             
             // No ISRC for albums so we need to search...
-            let search = "\(attributes.name) \(attributes.artistName)".replacingOccurrences(of: " ", with: "+")
+            let search = "\(attributes.name) \(attributes.artistName)"
+                .replacingOccurrences(of: " - Single", with: "")
+                .replacingOccurrences(of: " ", with: "+")
             SpotifyAPI.manager.search(for: search) { (albums: [SpotifyAPI.AlbumSimplified], url, error) in
                 guard let urlString = albums.first?.externalUrls.spotify else {
                     DispatchQueue.main.async {

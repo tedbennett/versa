@@ -9,25 +9,37 @@ import SwiftUI
 import SpotifyAPI
 
 struct HomeView: View {
-
-    @ObservedObject var clipboardViewModel = ClipboardViewModel.shared
+    @ObservedObject var auth = AuthManager.shared
+    @State var currentTab = 0
     
     var body: some View {
-        TabView {
-            AppleMusicPlaylistsView().tabItem {
-                Text("Apple Music")
-                Image(uiImage: UIImage(named: "apple")!)
-            }.navigationBarHidden(true)
-
-            SpotifyPlaylistsView().tabItem {
-                Text("Spotify")
-                Image(uiImage: UIImage(named: "spotify")!)
-            }.navigationBarHidden(true)
-            
-            ClipboardView().tabItem {
+        TabView(selection: $currentTab) {
+            ClipboardView(currentTab: $currentTab).tabItem {
                 Text("Clipboard")
                 Image(systemName: "arrow.left.arrow.right.circle")
             }.navigationBarHidden(true)
+            .tag(0)
+            
+            if auth.authorisedApple && auth.authorisedSpotify {
+                AppleMusicPlaylistsView().tabItem {
+                    Text("Apple Music")
+                    Image(uiImage: UIImage(named: "apple")!)
+                }.navigationBarHidden(true)
+                .tag(1)
+            
+                SpotifyPlaylistsView().tabItem {
+                    Text("Spotify")
+                    Image(uiImage: UIImage(named: "spotify")!)
+                }.navigationBarHidden(true)
+                .tag(2)
+            }
+            SettingsView().tabItem {
+                Text("Settings")
+                Image(systemName: "gear")
+            }.navigationBarHidden(true)
+            .tag(3)
+        }.onChange(of: currentTab) { _ in
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
         .navigationBarBackButtonHidden(true)
     }

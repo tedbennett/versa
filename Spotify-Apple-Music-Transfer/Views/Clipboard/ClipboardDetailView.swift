@@ -18,6 +18,9 @@ struct ClipboardDetailView: View {
 
     @ObservedObject var viewModel: ClipboardViewModel
     
+    @State var showSpotifyWarning = false
+    @State var showAppleMusicWarning = false
+    
     var state: ClipboardState
     
     var openInServiceString: String {
@@ -49,16 +52,15 @@ struct ClipboardDetailView: View {
         GeometryReader { geometry in
             HStack {
                 Spacer()
-                
                 VStack(alignment: .center, spacing: 20) {
                     Spacer()
                     ImageView(urlString: imageUrl).frame(width: 300, height: 300).cornerRadius(20)
                     Text(name).font(.largeTitle).bold().multilineTextAlignment(.center)
-                    Divider()
+                    
                     if text != nil {
                         Text(text!).foregroundColor(.gray).multilineTextAlignment(.center)
                     }
-                    Spacer(minLength: 0)
+                    Divider()
                     HStack {
                         Spacer()
                         Button(action: {
@@ -68,10 +70,9 @@ struct ClipboardDetailView: View {
                                 default:
                                     if url != nil {
                                         UIApplication.shared.open(url!)
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                                     }
-                                
                             }
-                            
                         }, label: {
                             ZStack {
                                 Text(openInServiceString).font(.title3)
@@ -88,6 +89,7 @@ struct ClipboardDetailView: View {
                         if url != nil {
                             Button(action: {
                                 viewModel.presentShareSheet = true
+                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             }, label: {
                                 ZStack {
                                     Circle().fill(Color.primary).frame(width: 60, height: 60)
@@ -95,19 +97,53 @@ struct ClipboardDetailView: View {
                                 }
                             })
                         }
-                        if state != .appleMusicPlaylist && state != .spotifyPlaylist {
-                            Button(action: {
-                                viewModel.addToLibrary()
-                            }, label: {
-                                ZStack {
-                                    Circle().fill(Color.primary).frame(width: 60, height: 60)
-                                    Image(systemName: "plus").font(.title).foregroundColor( Color(UIColor.systemBackground)).padding()
-                                }
-                            })
+                        switch state {
+                            case  .appleMusicSong, .appleMusicAlbum:
+                                Button(action: {
+                                    if AuthManager.shared.authorisedApple {
+                                        viewModel.addToLibrary()
+                                    } else {
+                                        showSpotifyWarning = false
+                                        showAppleMusicWarning = true
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                    }
+                                }, label: {
+                                    ZStack {
+                                        Circle().fill(Color.primary).frame(width: 60, height: 60)
+                                        Image(systemName: "plus").font(.title).foregroundColor( Color(UIColor.systemBackground)).padding()
+                                    }
+                                })
+                            case .spotifySong, .spotifyAlbum:
+                                Button(action: {
+                                    if AuthManager.shared.authorisedSpotify {
+                                        viewModel.addToLibrary()
+                                    } else {
+                                        showAppleMusicWarning = false
+                                        showSpotifyWarning = true
+                                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                                    }
+                                }, label: {
+                                    ZStack {
+                                        Circle().fill(Color.primary).frame(width: 60, height: 60)
+                                        Image(systemName: "plus").font(.title).foregroundColor( Color(UIColor.systemBackground)).padding()
+                                    }
+                                })
+                            default: EmptyView()
                         }
                     }
+                    if showSpotifyWarning {
+                        Text("Log in to Spotify in Settings to add songs to your library")
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.red)
+                    } else if showAppleMusicWarning {
+                        Text("Log in to Apple Music in Settings to add songs to your library")
+                            .lineLimit(2)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.red)
+                    }
                     Spacer()
-                }.frame(width: geometry.size.width * 0.8)
+                }.frame(width: geometry.size.width * 0.9)
                 Spacer()
             }.animation(.easeInOut)
             .transition(.opacity)
