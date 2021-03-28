@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var auth = AuthManager.shared
+    @Binding var presentInfo: Bool
     
     var body: some View {
         NavigationView {
@@ -77,12 +78,19 @@ struct SettingsView: View {
                 }
             }.listStyle(InsetGroupedListStyle())
             .navigationTitle("Settings")
+            
+            .navigationBarItems(trailing: Button {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                presentInfo = true
+            } label: {
+                Image(systemName: "info.circle").font(.title2)
+            })
         }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(presentInfo: .constant(false))
     }
 }

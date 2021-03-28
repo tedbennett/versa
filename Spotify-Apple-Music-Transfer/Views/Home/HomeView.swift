@@ -11,6 +11,7 @@ import SpotifyAPI
 struct HomeView: View {
     @ObservedObject var auth = AuthManager.shared
     @State var currentTab = 0
+    @Binding var presentInfo: Bool
     
     var body: some View {
         TabView(selection: $currentTab) {
@@ -33,7 +34,7 @@ struct HomeView: View {
                 }.navigationBarHidden(true)
                 .tag(2)
             }
-            SettingsView().tabItem {
+            SettingsView(presentInfo: $presentInfo).tabItem {
                 Text("Settings")
                 Image(systemName: "gear")
             }.navigationBarHidden(true)
@@ -47,6 +48,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(presentInfo: .constant(false))
     }
 }
