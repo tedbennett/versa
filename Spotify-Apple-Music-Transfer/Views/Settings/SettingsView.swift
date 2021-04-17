@@ -85,6 +85,9 @@ struct SettingsView: View {
             } label: {
                 Image(systemName: "info.circle").font(.title2)
             })
+            .alert(isPresented: $auth.userDoesNotHaveAppleMusic) {
+                Alert(title: Text("Apple Music Subcription Not Found"), message: Text("Could not find an Apple Music subscription associated with your Apple ID"), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }

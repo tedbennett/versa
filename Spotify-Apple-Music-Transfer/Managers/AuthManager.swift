@@ -32,6 +32,7 @@ class AuthManager: ObservableObject {
     }
     
     @Published var completedAuthSetup = false
+    @Published var userDoesNotHaveAppleMusic = false
     
     private init() {
         if UserDefaults.standard.bool(forKey: "LoggedInAppleMusic") {
@@ -65,6 +66,8 @@ class AuthManager: ObservableObject {
                                 print(error.debugDescription)
                             }
                         }
+                    } else {
+                        self.userDoesNotHaveAppleMusic = true
                     }
                 }
             }
