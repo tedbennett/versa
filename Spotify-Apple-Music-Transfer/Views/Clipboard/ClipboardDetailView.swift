@@ -153,13 +153,13 @@ struct ClipboardDetailView: View {
             }
             .toast(isPresenting: $viewModel.transferSuccess, duration: 2.0, tapToDismiss: false, alert: {
                 AlertToast(type: .complete(.primary), title: "Transfer complete!", subTitle: nil)
-            }, completion: {_ in})
+            }, completion: {})
             .toast(isPresenting: $viewModel.addToLibrarySuccess, duration: 2.0, tapToDismiss: false, alert: {
                 AlertToast(type: .complete(.primary), title: "Added to your Library!", subTitle: nil)
-            }, completion: {_ in})
+            }, completion: {})
             .toast(isPresenting: $viewModel.transferFail, duration: 2.0, tapToDismiss: false, alert: {
                 AlertToast(type: .error(.primary), title: "Transfer failed", subTitle: "An error occured")
-            }, completion: {_ in})
+            }, completion: {})
         }
     }
 }

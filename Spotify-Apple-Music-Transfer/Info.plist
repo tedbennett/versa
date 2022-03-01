@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>apple-music-spotify-transfer</string>
+				<string>versa</string>
 			</array>
 		</dict>
 	</array>

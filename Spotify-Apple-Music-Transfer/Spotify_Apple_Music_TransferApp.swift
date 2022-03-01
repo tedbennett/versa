@@ -14,7 +14,7 @@ struct Spotify_Apple_Music_TransferApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView().onOpenURL { url in
-                SpotifyAPI.manager.handleRedirect(url: url)
+                SpotifyAPI.manager.handleRedirect(redirectUrl: url, completion: { _ in })
             }
         }
     }

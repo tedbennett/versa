@@ -6,10 +6,29 @@
 //
 
 import SwiftUI
+import BetterSafariView
 
 struct SettingsView: View {
     @ObservedObject var auth = AuthManager.shared
+    @State var presentSpotifyLogin = false
     @Binding var presentInfo: Bool
+    
+    private let AUTHORISE_SPOTIFY_URL = URL(string: "https://accounts.spotify.com/authorize?client_id=e164f018712e4c6ba906a595591ff010&response_type=code&redirect_uri=versa://oauth-callback/&scope=playlist-modify-private%20playlist-modify-public%20user-library-read%20user-library-modify&show_dialog=true")!
+    
+    var webAuthSession: WebAuthenticationSession {
+        WebAuthenticationSession(
+            url: AUTHORISE_SPOTIFY_URL,
+            callbackURLScheme: "kude"
+        ) { callbackURL, error in
+            guard let callbackURL = callbackURL, error == nil,
+                  let url = URLComponents(url: callbackURL, resolvingAgainstBaseURL: true),
+                  let code = url.queryItems?.first(where: { $0.name == "code" })?.value else {
+                      print(error.debugDescription)
+                      return
+                  }
+            auth.authoriseSpotifyWithUser(code: code)
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -18,7 +37,7 @@ struct SettingsView: View {
                     if !auth.authorisedApple {
                         Button {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            auth.authoriseAppleMusicWithUser()
+                            auth.startAppleMusicAuth()
                         } label: {
                             HStack {
                                 Image("apple_music_icon").resizable().frame(width: 50, height: 50)
@@ -50,7 +69,7 @@ struct SettingsView: View {
                     if !auth.authorisedSpotify {
                         Button {
                             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            auth.authoriseSpotifyWithUser()
+                            presentSpotifyLogin = true
                         } label: {
                             HStack {
                                 Image("spotify_icon").resizable().frame(width: 50, height: 50)
@@ -87,6 +106,9 @@ struct SettingsView: View {
             })
             .alert(isPresented: $auth.userDoesNotHaveAppleMusic) {
                 Alert(title: Text("Apple Music Subcription Not Found"), message: Text("Could not find an Apple Music subscription associated with your Apple ID"), dismissButton: .default(Text("OK")))
+            }
+            .webAuthenticationSession(isPresented: $presentSpotifyLogin) {
+                webAuthSession
             }
         }
     }

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5750E91D27B265520090C048 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750E91C27B265520090C048 /* Environment.swift */; };
+		578B528727CEB04B007263CC /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 578B528627CEB04B007263CC /* BetterSafariView */; };
 		9F0CE7712604A3BE00DACCC9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE7702604A3BE00DACCC9 /* SettingsView.swift */; };
-		9F0CE7812604B11000DACCC9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE7802604B11000DACCC9 /* Environment.swift */; };
 		9F0CE7842604B18600DACCC9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9F0CE7832604B18600DACCC9 /* .gitignore */; };
 		9F0CE7FD26062E2800DACCC9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE7FC26062E2800DACCC9 /* ContentView.swift */; };
 		9F0CE80126065E4F00DACCC9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0CE80026065E4F00DACCC9 /* AuthManager.swift */; };
@@ -41,8 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5750E91C27B265520090C048 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		9F0CE7702604A3BE00DACCC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		9F0CE7802604B11000DACCC9 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		9F0CE7832604B18600DACCC9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9F0CE7FC26062E2800DACCC9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9F0CE80026065E4F00DACCC9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 				9F9088672602BC8100FB00F6 /* AlertToast in Frameworks */,
 				9F4C72512547326900699C0E /* SpotifyAPI in Frameworks */,
 				9F4C724D2547325100699C0E /* AppleMusicAPI in Frameworks */,
+				578B528727CEB04B007263CC /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +184,7 @@
 				9F37BCB8260200D00029BFDB /* Managers */,
 				9F4C72532547327700699C0E /* Views */,
 				9F4C72412547323100699C0E /* Preview Content */,
-				9F0CE7802604B11000DACCC9 /* Environment.swift */,
+				5750E91C27B265520090C048 /* Environment.swift */,
 				9FA103CB260762C100D2C9A3 /* Constants.swift */,
 			);
 			path = "Spotify-Apple-Music-Transfer";
@@ -209,7 +211,6 @@
 				9F91EFDF254DAD1A00A7FEFD /* Common */,
 				9F73A1482603EAC4009EDD31 /* Home */,
 				9F910138254A313B00F97C90 /* Clipboard */,
-				9FB8535625474EE4000521B0 /* AppleMusic */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,13 +245,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		9FB8535625474EE4000521B0 /* AppleMusic */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AppleMusic;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -271,6 +265,7 @@
 				9F4C724C2547325100699C0E /* AppleMusicAPI */,
 				9F4C72502547326900699C0E /* SpotifyAPI */,
 				9F9088662602BC8100FB00F6 /* AlertToast */,
+				578B528627CEB04B007263CC /* BetterSafariView */,
 			);
 			productName = "Spotify-Apple-Music-Transfer";
 			productReference = 9F4C72382547322F00699C0E /* Spotify-Apple-Music-Transfer.app */;
@@ -303,6 +298,7 @@
 				9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */,
 				9F4C724F2547326900699C0E /* XCRemoteSwiftPackageReference "SpotifyForSwift" */,
 				9F9088652602BC8100FB00F6 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				578B528527CEB04B007263CC /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 			);
 			productRefGroup = 9F4C72392547322F00699C0E /* Products */;
 			projectDirPath = "";
@@ -346,11 +342,11 @@
 				9F0CE7FD26062E2800DACCC9 /* ContentView.swift in Sources */,
 				9F4C7261254732DC00699C0E /* SpotifyPlaylistsView.swift in Sources */,
 				9F91EFDA254DAD0600A7FEFD /* PlaylistItem.swift in Sources */,
-				9F0CE7812604B11000DACCC9 /* Environment.swift in Sources */,
 				9F5E52FC254743CD00B4E7C9 /* AppleMusicPlaylistsViewModel.swift in Sources */,
 				9F90886A2602C9AE00FB00F6 /* ShareSheet.swift in Sources */,
 				9F3BF8892602507500AA42D0 /* WelcomeView.swift in Sources */,
 				9FB8535125474968000521B0 /* SpotifyPlaylistsViewModel.swift in Sources */,
+				5750E91D27B265520090C048 /* Environment.swift in Sources */,
 				9F690032254755200071BEBA /* SpotifyPlaylistDetailViewModel.swift in Sources */,
 				9FB8535925474F85000521B0 /* AppleMusicPlaylistDetailViewModel.swift in Sources */,
 				9FB8535425474EE0000521B0 /* AppleMusicPlaylistDetail.swift in Sources */,
@@ -546,6 +542,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		578B528527CEB04B007263CC /* XCRemoteSwiftPackageReference "BetterSafariView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stleamist/BetterSafariView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tedbennett/AppleMusicForSwift.git";
@@ -573,6 +577,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		578B528627CEB04B007263CC /* BetterSafariView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 578B528527CEB04B007263CC /* XCRemoteSwiftPackageReference "BetterSafariView" */;
+			productName = BetterSafariView;
+		};
 		9F4C724C2547325100699C0E /* AppleMusicAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9F4C724B2547325100699C0E /* XCRemoteSwiftPackageReference "AppleMusicForSwift" */;
